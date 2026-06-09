@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Core Pages -->
+  <url>
+    <loc>https://www.ryanlaw.us/</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.ryanlaw.us/attorney</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ryanlaw.us/practice-areas</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.ryanlaw.us/testimonials</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.ryanlaw.us/blog</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.ryanlaw.us/contact</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Practice Area Parents -->
+  <url>
+    <loc>https://www.ryanlaw.us/criminal-defense</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.ryanlaw.us/dui-defense</loc>
+    <lastmod>2026-06-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Criminal Defense Sub-Pages -->
+  <url><loc>https://www.ryanlaw.us/criminal-defense/dui</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/underage-dui</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/drug-charges</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/assault-and-battery</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/domestic-violence</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/theft-and-burglary</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/weapons-charges</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/traffic-violations</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/license-suspension</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/probation-violations</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/expungements</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/juvenile-offenses</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/felonies</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/misdemeanors</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/criminal-defense/faq</loc><priority>0.6</priority></url>
+
+  <!-- DUI Defense Sub-Pages -->
+  <url><loc>https://www.ryanlaw.us/dui-defense/first-time-dui</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/dui-defense/repeat-dui</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/dui-defense/felony-dui</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/dui-defense/underage-dui</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/dui-defense/dui-with-injury</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/dui-defense/breathalyzer-challenges</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/dui-defense/license-suspension-defense</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/dui-defense/commercial-driver-dui</loc><priority>0.6</priority></url>
+  <url><loc>https://www.ryanlaw.us/dui-defense/faq</loc><priority>0.6</priority></url>
+
+  <!-- Location Pages -->
+  <url><loc>https://www.ryanlaw.us/bel-air-md</loc><priority>0.7</priority></url>
+  <url><loc>https://www.ryanlaw.us/harford-county</loc><priority>0.7</priority></url>
+  <url><loc>https://www.ryanlaw.us/cecil-county</loc><priority>0.7</priority></url>
+  <url><loc>https://www.ryanlaw.us/baltimore-county</loc><priority>0.7</priority></url>
+  <url><loc>https://www.ryanlaw.us/washington-dc</loc><priority>0.7</priority></url>
+
+  <!-- Blog Posts -->
+  <url><loc>https://www.ryanlaw.us/blog/what-to-do-if-you-are-arrested-in-maryland</loc><priority>0.5</priority></url>
+  <url><loc>https://www.ryanlaw.us/blog/first-dui-in-maryland-penalties-and-how-to-fight-it</loc><priority>0.5</priority></url>
+  <url><loc>https://www.ryanlaw.us/blog/can-you-refuse-a-breathalyzer-in-maryland</loc><priority>0.5</priority></url>
+  <url><loc>https://www.ryanlaw.us/blog/how-to-get-a-criminal-record-expunged-in-maryland</loc><priority>0.5</priority></url>
+</urlset>
