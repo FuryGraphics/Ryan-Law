@@ -3,7 +3,6 @@ import { Link } from "wouter";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
-import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
 import { CLIENT_INFO, CORE_PAGES } from "@/lib/routes";
 import { Button } from "@/components/ui/button";
@@ -192,20 +191,6 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* Embedded Contact Form Section */}
-      <section className="py-12 bg-gradient-to-b from-background to-[#050505] relative z-20">
-        <div className="container max-w-4xl">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={fadeInUp}
-          >
-            <ContactForm />
-          </motion.div>
         </div>
       </section>
 
