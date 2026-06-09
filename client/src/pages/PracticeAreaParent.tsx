@@ -5,55 +5,36 @@ import FloatingCallButton from "@/components/FloatingCallButton";
 import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES, CLIENT_INFO } from "@/lib/routes";
-import { Gavel, Shield, Phone, ChevronRight, CheckCircle, Scale, Calendar, Award } from "lucide-react";
+import { getPracticeArea, PRACTICE_AREAS, CLIENT_INFO } from "@/lib/routes";
+import NotFound from "@/pages/NotFound";
+import { Gavel, Shield, Car, HeartCrack, FileCheck, Phone, ChevronRight, CheckCircle, Scale, Calendar, Award } from "lucide-react";
+
+const ICONS: Record<string, typeof Gavel> = {
+  gavel: Gavel,
+  shield: Shield,
+  car: Car,
+  "heart-crack": HeartCrack,
+  "file-check": FileCheck
+};
 
 interface PracticeAreaParentProps {
-  type: "criminal-defense" | "dui-defense";
+  type: string;
 }
 
 export default function PracticeAreaParent({ type }: PracticeAreaParentProps) {
-  const isCriminal = type === "criminal-defense";
+  const area = getPracticeArea(type);
+  if (!area) return <NotFound />;
 
-  const pageData = isCriminal
-    ? {
-        title: "Criminal Defense",
-        seoTitle: "Criminal Defense Attorney Bel Air, MD | Ryan Law LLC",
-        metaDescription: "Facing criminal charges in Maryland? James Ryan provides aggressive, custom criminal defense representation. Call (917) 576-4324 for a free consultation.",
-        h1: "Criminal Defense Attorney Bel Air, MD",
-        intro: "A criminal charge can disrupt every aspect of your life. Whether you are facing a misdemeanor or a complex felony in Maryland, the legal system can feel overwhelming. At Ryan Law LLC, we provide experienced, aggressive, and relentless defense representation to ensure your rights are fully protected and your voice is heard.",
-        subpages: CRIMINAL_DEFENSE_SUBPAGES,
-        cases: [
-          "Drug Charges (Possession, Distribution, Conspiracy)",
-          "Assault, Battery, and Violent Crimes",
-          "Domestic Violence & Protective Orders",
-          "Theft, Burglary, and Property Crimes",
-          "Weapons Charges & Gun Violations",
-          "Traffic Violations & MVA Hearings",
-          "Probation Violations & Expungements",
-          "Juvenile Offenses & School Hearings"
-        ],
-        icon: Gavel
-      }
-    : {
-        title: "DUI Defense",
-        seoTitle: "DUI Defense Attorney Bel Air, MD | Ryan Law LLC",
-        metaDescription: "Arrested for a DUI or DWI in Maryland? Protect your driver's license and freedom. Contact James Ryan for an aggressive defense strategy. Free evaluation.",
-        h1: "DUI Defense Attorney Bel Air, MD",
-        intro: "In Maryland, a DUI or DWI arrest triggers two separate legal battles: a criminal case in court and an administrative case with the Motor Vehicle Administration (MVA). At Ryan Law LLC, we understand the science and procedures behind blood alcohol tests, field sobriety testing, and traffic stops, and we build aggressive defenses to safeguard your license.",
-        subpages: DUI_DEFENSE_SUBPAGES,
-        cases: [
-          "First-Time DUI & DWI Charges",
-          "Repeat & Multiple DUI Offenses",
-          "Felony DUI & DUI with Injury",
-          "Underage DUI & MVA Hearings",
-          "Breathalyzer & Blood Test Challenges",
-          "Field Sobriety Test Audits",
-          "Commercial Driver (CDL) DUI Defense",
-          "Ignition Interlock Device Requirements"
-        ],
-        icon: Shield
-      };
+  const pageData = {
+    title: area.title,
+    seoTitle: area.seoTitle,
+    metaDescription: area.metaDescription,
+    h1: area.h1,
+    intro: area.intro,
+    subpages: area.subpages,
+    cases: area.cases,
+    icon: ICONS[area.iconKey] ?? Gavel
+  };
 
   const steps = [
     { num: "01", title: "Free Case Evaluation", desc: "Speak directly with James Ryan. We will review your charges, police reports, and immediate court deadlines." },

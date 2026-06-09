@@ -5,8 +5,16 @@ import FloatingCallButton from "@/components/FloatingCallButton";
 import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { CORE_PAGES, CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES } from "@/lib/routes";
-import { Shield, Scale, Gavel, CheckCircle, ChevronRight } from "lucide-react";
+import { CORE_PAGES, PRACTICE_AREAS } from "@/lib/routes";
+import { Shield, Scale, Gavel, Car, HeartCrack, FileCheck, CheckCircle, ChevronRight } from "lucide-react";
+
+const ICONS: Record<string, typeof Gavel> = {
+  gavel: Gavel,
+  shield: Shield,
+  car: Car,
+  "heart-crack": HeartCrack,
+  "file-check": FileCheck
+};
 
 export default function PracticeAreas() {
   const pageInfo = CORE_PAGES.practiceAreas;
@@ -44,81 +52,54 @@ export default function PracticeAreas() {
       {/* Practice Areas Grid */}
       <section className="py-20 bg-background">
         <div className="container flex flex-col gap-16">
-          {/* Criminal Defense Hub Column */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start border-b border-white/5 pb-16">
-            <div className="lg:col-span-4 flex flex-col gap-4">
-              <div className="p-4 bg-card border border-white/5 rounded-sm w-fit">
-                <Gavel className="w-8 h-8 text-primary" />
-              </div>
-              <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
-                Criminal Defense
-              </h2>
-              <p className="text-xs md:text-sm text-muted-foreground leading-relaxed font-sans font-light">
-                James Ryan represents clients facing all levels of criminal charges, from minor misdemeanors to high-stakes felonies. We meticulously analyze police procedures and evidence to craft aggressive defense strategies.
-              </p>
-              <Link href="/criminal-defense">
-                <span className="text-xs text-primary font-semibold hover:underline cursor-pointer pt-2 block">
-                  Explore Criminal Defense Hub →
-                </span>
-              </Link>
-            </div>
-
-            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {CRIMINAL_DEFENSE_SUBPAGES.slice(0, 10).map((sub) => (
-                <Link key={sub.slug} href={`/criminal-defense/${sub.slug}`}>
-                  <div className="bg-card border border-white/5 p-5 rounded-sm hover:border-primary/20 transition-all cursor-pointer group flex items-center justify-between">
-                    <div>
-                      <h3 className="font-serif text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {sub.title}
-                      </h3>
-                      <p className="text-[11px] text-muted-foreground font-sans mt-1">
-                        Defending charges in Maryland & DC
-                      </p>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+          {PRACTICE_AREAS.map((area, idx) => {
+            const Icon = ICONS[area.iconKey] ?? Gavel;
+            return (
+              <div
+                key={area.slug}
+                className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-start ${
+                  idx < PRACTICE_AREAS.length - 1 ? "border-b border-white/5 pb-16" : ""
+                }`}
+              >
+                <div className="lg:col-span-4 flex flex-col gap-4">
+                  <div className="p-4 bg-card border border-white/5 rounded-sm w-fit">
+                    <Icon className="w-8 h-8 text-primary" />
                   </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+                  <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
+                    {area.title}
+                  </h2>
+                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed font-sans font-light">
+                    {area.intro}
+                  </p>
+                  <Link href={`/${area.slug}`}>
+                    <span className="text-xs text-primary font-semibold hover:underline cursor-pointer pt-2 block">
+                      Explore {area.title} →
+                    </span>
+                  </Link>
+                </div>
 
-          {/* DUI Defense Hub Column */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            <div className="lg:col-span-4 flex flex-col gap-4">
-              <div className="p-4 bg-card border border-white/5 rounded-sm w-fit">
-                <Shield className="w-8 h-8 text-primary" />
+                <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {area.subpages
+                    .filter((sub) => sub.slug !== "faq")
+                    .map((sub) => (
+                      <Link key={sub.slug} href={`/${area.slug}/${sub.slug}`}>
+                        <div className="bg-card border border-white/5 p-5 rounded-sm hover:border-primary/20 transition-all cursor-pointer group flex items-center justify-between">
+                          <div>
+                            <h3 className="font-serif text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                              {sub.title}
+                            </h3>
+                            <p className="text-[11px] text-muted-foreground font-sans mt-1">
+                              {area.tagline}
+                            </p>
+                          </div>
+                          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                        </div>
+                      </Link>
+                    ))}
+                </div>
               </div>
-              <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
-                DUI & Impaired Driving Defense
-              </h2>
-              <p className="text-xs md:text-sm text-muted-foreground leading-relaxed font-sans font-light">
-                A DUI conviction can cost you your driver's license, your job, and your freedom. We challenge roadside testing, official breathalyzers, and the legality of traffic stops to safeguard your privileges.
-              </p>
-              <Link href="/dui-defense">
-                <span className="text-xs text-primary font-semibold hover:underline cursor-pointer pt-2 block">
-                  Explore DUI Defense Hub →
-                </span>
-              </Link>
-            </div>
-
-            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {DUI_DEFENSE_SUBPAGES.slice(0, 8).map((sub) => (
-                <Link key={sub.slug} href={`/dui-defense/${sub.slug}`}>
-                  <div className="bg-card border border-white/5 p-5 rounded-sm hover:border-primary/20 transition-all cursor-pointer group flex items-center justify-between">
-                    <div>
-                      <h3 className="font-serif text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {sub.title}
-                      </h3>
-                      <p className="text-[11px] text-muted-foreground font-sans mt-1">
-                        Protecting your driver's license
-                      </p>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
+            );
+          })}
         </div>
       </section>
 

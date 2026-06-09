@@ -81,6 +81,13 @@ export const CORE_PAGES: Record<string, RouteInfo> = {
     metaDescription: "Privacy policy for Ryan Law LLC. Learn how we collect, use, and protect your personal information on our website.",
     schemaType: "WebPage"
   },
+  terms: {
+    title: "Terms & Conditions",
+    path: "/terms-and-conditions",
+    seoTitle: "Terms & Conditions | Ryan Law LLC",
+    metaDescription: "Terms and conditions governing the use of the Ryan Law LLC website. Review the rules, disclaimers, and limitations that apply to visitors of this site.",
+    schemaType: "WebPage"
+  },
   sitemap: {
     title: "Sitemap",
     path: "/sitemap",
@@ -120,12 +127,162 @@ export const DUI_DEFENSE_SUBPAGES = [
   { slug: "faq", title: "DUI FAQ", keyword: "Maryland DUI FAQ" }
 ];
 
+export const TRAFFIC_OFFENSE_SUBPAGES = [
+  { slug: "reckless-and-negligent-driving", title: "Reckless & Negligent Driving", keyword: "Reckless Driving Lawyer Maryland" },
+  { slug: "speeding-and-racing", title: "Speeding & Racing", keyword: "Speeding Ticket Attorney Bel Air MD" },
+  { slug: "driving-on-suspended-license", title: "Driving on a Suspended License", keyword: "Suspended License Lawyer Maryland" },
+  { slug: "driving-without-a-license", title: "Driving Without a License", keyword: "No License Charge Maryland" },
+  { slug: "hit-and-run", title: "Hit & Run / Leaving the Scene", keyword: "Hit and Run Attorney Maryland" },
+  { slug: "cdl-traffic-violations", title: "CDL Traffic Violations", keyword: "CDL Ticket Lawyer Maryland" },
+  { slug: "mva-point-hearings", title: "MVA Point & Suspension Hearings", keyword: "MVA Hearing Lawyer Maryland" }
+];
+
+export const DOMESTIC_VIOLENCE_SUBPAGES = [
+  { slug: "protective-and-peace-orders", title: "Protective & Peace Orders", keyword: "Protective Order Lawyer Maryland" },
+  { slug: "domestic-assault", title: "Domestic Assault Charges", keyword: "Domestic Assault Attorney Bel Air MD" },
+  { slug: "violation-of-protective-order", title: "Violation of a Protective Order", keyword: "Violating Protective Order Maryland" },
+  { slug: "false-allegations", title: "False Allegations Defense", keyword: "False Domestic Violence Claim Maryland" },
+  { slug: "second-degree-assault", title: "Second-Degree Assault (Domestic)", keyword: "Second Degree Assault Lawyer Maryland" }
+];
+
+export const EXPUNGEMENT_SUBPAGES = [
+  { slug: "expungement-eligibility", title: "Expungement Eligibility", keyword: "Expungement Eligibility Maryland" },
+  { slug: "the-expungement-process", title: "The Expungement Process", keyword: "How to Expunge Record Maryland" },
+  { slug: "expunging-a-pbj", title: "Expunging a PBJ", keyword: "Expunge PBJ Maryland" },
+  { slug: "record-shielding", title: "Record Shielding", keyword: "Record Shielding Maryland" },
+  { slug: "governors-pardons", title: "Governor's Pardons", keyword: "Governor Pardon Maryland" }
+];
+
+// Top-level practice area "hubs". Pages (hub + sub-pages) are generated from this config.
+export const PRACTICE_AREAS = [
+  {
+    slug: "criminal-defense",
+    title: "Criminal Defense",
+    navLabel: "Criminal Defense",
+    tagline: "Felony & misdemeanor defense across Maryland.",
+    iconKey: "gavel",
+    seoTitle: "Criminal Defense Attorney Bel Air, MD | Ryan Law LLC",
+    metaDescription: "Facing criminal charges in Maryland? James Ryan provides aggressive, custom criminal defense representation. Call (917) 576-4324 for a free consultation.",
+    h1: "Criminal Defense Attorney Bel Air, MD",
+    intro: "A criminal charge can disrupt every aspect of your life. Whether you are facing a misdemeanor or a complex felony in Maryland, the legal system can feel overwhelming. At Ryan Law LLC, we provide experienced, aggressive, and relentless defense representation to ensure your rights are fully protected and your voice is heard.",
+    cases: [
+      "Drug Charges (Possession, Distribution, Conspiracy)",
+      "Assault, Battery, and Violent Crimes",
+      "Domestic Violence & Protective Orders",
+      "Theft, Burglary, and Property Crimes",
+      "Weapons Charges & Gun Violations",
+      "Traffic Violations & MVA Hearings",
+      "Probation Violations & Expungements",
+      "Juvenile Offenses & School Hearings"
+    ],
+    subpages: CRIMINAL_DEFENSE_SUBPAGES
+  },
+  {
+    slug: "dui-defense",
+    title: "DUI Defense",
+    navLabel: "DUI & DWI Defense",
+    tagline: "Protect your license and your freedom.",
+    iconKey: "shield",
+    seoTitle: "DUI Defense Attorney Bel Air, MD | Ryan Law LLC",
+    metaDescription: "Arrested for a DUI or DWI in Maryland? Protect your driver's license and freedom. Contact James Ryan for an aggressive defense strategy. Free evaluation.",
+    h1: "DUI Defense Attorney Bel Air, MD",
+    intro: "In Maryland, a DUI or DWI arrest triggers two separate legal battles: a criminal case in court and an administrative case with the Motor Vehicle Administration (MVA). At Ryan Law LLC, we understand the science and procedures behind blood alcohol tests, field sobriety testing, and traffic stops, and we build aggressive defenses to safeguard your license.",
+    cases: [
+      "First-Time DUI & DWI Charges",
+      "Repeat & Multiple DUI Offenses",
+      "Felony DUI & DUI with Injury",
+      "Underage DUI & MVA Hearings",
+      "Breathalyzer & Blood Test Challenges",
+      "Field Sobriety Test Audits",
+      "Commercial Driver (CDL) DUI Defense",
+      "Ignition Interlock Device Requirements"
+    ],
+    subpages: DUI_DEFENSE_SUBPAGES
+  },
+  {
+    slug: "traffic-offenses",
+    title: "Traffic & Driving Offenses",
+    navLabel: "Traffic & Driving Offenses",
+    tagline: "Keep points off your record and your license valid.",
+    iconKey: "car",
+    seoTitle: "Traffic Offense Attorney Bel Air, MD | Ryan Law LLC",
+    metaDescription: "Ticketed or charged with a serious traffic offense in Maryland? James Ryan fights reckless driving, suspended license, and CDL charges. Call (917) 576-4324.",
+    h1: "Traffic & Driving Offense Attorney Bel Air, MD",
+    intro: "Many Maryland traffic charges are misdemeanors that carry jail time, heavy fines, license points, and lasting consequences for your insurance and employment, especially for commercial drivers. Ryan Law LLC defends the full range of serious traffic and driving offenses and fights to keep points off your record and your license in your hands.",
+    cases: [
+      "Reckless & Negligent Driving",
+      "Excessive Speeding & Racing",
+      "Driving on a Suspended or Revoked License",
+      "Driving Without a License or Registration",
+      "Hit & Run / Leaving the Scene of an Accident",
+      "Commercial Driver (CDL) Violations",
+      "MVA Point Accumulation Hearings",
+      "Failure to Appear & Bench Warrants"
+    ],
+    subpages: TRAFFIC_OFFENSE_SUBPAGES
+  },
+  {
+    slug: "domestic-violence",
+    title: "Domestic Violence Defense",
+    navLabel: "Domestic Violence Defense",
+    tagline: "Protective orders & domestic assault charges.",
+    iconKey: "heart-crack",
+    seoTitle: "Domestic Violence Defense Attorney Bel Air, MD | Ryan Law LLC",
+    metaDescription: "Accused of domestic violence or served a protective order in Maryland? James Ryan provides discreet, aggressive defense. Call (917) 576-4324 for a free consult.",
+    h1: "Domestic Violence Defense Attorney Bel Air, MD",
+    intro: "Domestic violence accusations in Maryland move quickly and carry immediate consequences, from protective orders that remove you from your home to criminal charges that threaten your freedom and reputation. Ryan Law LLC defends the accused with discretion and intensity, challenging weak evidence and protecting your rights at every stage.",
+    cases: [
+      "Temporary & Final Protective Orders",
+      "Peace Orders",
+      "Domestic Assault (First & Second Degree)",
+      "Violation of a Protective Order",
+      "False or Exaggerated Allegations",
+      "Custody & Firearm Surrender Consequences",
+      "Stalking & Harassment Charges",
+      "Modification & Expiration of Orders"
+    ],
+    subpages: DOMESTIC_VIOLENCE_SUBPAGES
+  },
+  {
+    slug: "expungements",
+    title: "Expungements & Record Relief",
+    navLabel: "Expungements & Record Relief",
+    tagline: "Clear your record and move forward.",
+    iconKey: "file-check",
+    seoTitle: "Expungement Attorney Bel Air, MD | Ryan Law LLC",
+    metaDescription: "Clear your Maryland criminal record. James Ryan handles expungements, PBJ removal, and record shielding so your past stops holding you back. Free consultation.",
+    h1: "Expungement & Record Relief Attorney Bel Air, MD",
+    intro: "A criminal record can follow you for years, blocking jobs, housing, and professional licenses, even for charges that were dropped or resolved without a conviction. Ryan Law LLC helps Maryland residents determine what they qualify for and files the petitions needed to expunge, shield, and clear their records so they can move forward.",
+    cases: [
+      "Expungement of Dismissed & Nolle Prosequi Charges",
+      "Expungement After Acquittal",
+      "Probation Before Judgment (PBJ) Expungement",
+      "Expungement of Eligible Convictions",
+      "Record Shielding Petitions",
+      "Juvenile Record Expungement",
+      "Governor's Pardon Applications",
+      "Background Check & Disclosure Guidance"
+    ],
+    subpages: EXPUNGEMENT_SUBPAGES
+  }
+] as const;
+
+export function getPracticeArea(slug: string) {
+  return PRACTICE_AREAS.find((a) => a.slug === slug);
+}
+
 export const LOCATION_PAGES = [
   { slug: "bel-air-md", name: "Bel Air, MD", title: "Criminal Defense & DUI Attorney Bel Air, MD", courthouse: "Harford County District & Circuit Courthouses (Bel Air, MD)" },
   { slug: "harford-county", name: "Harford County", title: "Criminal Defense & DUI Attorney Harford County", courthouse: "Harford County Courthouse (Bel Air, MD)" },
   { slug: "cecil-county", name: "Cecil County", title: "Criminal Defense & DUI Attorney Cecil County", courthouse: "Cecil County District & Circuit Courthouses (Elkton, MD)" },
   { slug: "baltimore-county", name: "Baltimore County", title: "Criminal Defense & DUI Attorney Baltimore County", courthouse: "Baltimore County District & Circuit Courthouses (Towson, MD)" },
-  { slug: "washington-dc", name: "Washington DC", title: "Criminal Defense & DUI Attorney Washington DC", courthouse: "Superior Court of the District of Columbia (Washington, DC)" }
+  { slug: "washington-dc", name: "Washington DC", title: "Criminal Defense & DUI Attorney Washington DC", courthouse: "Superior Court of the District of Columbia (Washington, DC)" },
+  { slug: "aberdeen-md", name: "Aberdeen, MD", title: "Criminal Defense & DUI Attorney Aberdeen, MD", courthouse: "Harford County District Court (Aberdeen / Bel Air, MD)" },
+  { slug: "havre-de-grace-md", name: "Havre de Grace, MD", title: "Criminal Defense & DUI Attorney Havre de Grace, MD", courthouse: "Harford County District & Circuit Courthouses (Bel Air, MD)" },
+  { slug: "edgewood-md", name: "Edgewood, MD", title: "Criminal Defense & DUI Attorney Edgewood, MD", courthouse: "Harford County District Court (Bel Air, MD)" },
+  { slug: "forest-hill-md", name: "Forest Hill, MD", title: "Criminal Defense & DUI Attorney Forest Hill, MD", courthouse: "Harford County District & Circuit Courthouses (Bel Air, MD)" },
+  { slug: "elkton-md", name: "Elkton, MD", title: "Criminal Defense & DUI Attorney Elkton, MD", courthouse: "Cecil County District & Circuit Courthouses (Elkton, MD)" },
+  { slug: "towson-md", name: "Towson, MD", title: "Criminal Defense & DUI Attorney Towson, MD", courthouse: "Baltimore County District & Circuit Courthouses (Towson, MD)" }
 ];
 
 export const BLOG_POSTS = [

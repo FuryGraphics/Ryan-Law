@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { CLIENT_INFO, CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES, LOCATION_PAGES } from "@/lib/routes";
+import { CLIENT_INFO, PRACTICE_AREAS, LOCATION_PAGES } from "@/lib/routes";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 
 export default function Footer() {
@@ -29,27 +29,10 @@ export default function Footer() {
             Practice Areas
           </h4>
           <ul className="space-y-2 text-xs text-muted-foreground font-sans">
-            <li>
-              <Link href="/criminal-defense">
-                <span className="hover:text-primary transition-colors cursor-pointer">Criminal Defense Hub</span>
-              </Link>
-            </li>
-            {CRIMINAL_DEFENSE_SUBPAGES.slice(0, 4).map((p) => (
-              <li key={p.slug}>
-                <Link href={`/criminal-defense/${p.slug}`}>
-                  <span className="hover:text-primary transition-colors cursor-pointer">{p.title}</span>
-                </Link>
-              </li>
-            ))}
-            <li className="pt-2 border-t border-white/5">
-              <Link href="/dui-defense">
-                <span className="hover:text-primary transition-colors cursor-pointer">DUI Defense Hub</span>
-              </Link>
-            </li>
-            {DUI_DEFENSE_SUBPAGES.slice(0, 3).map((p) => (
-              <li key={p.slug}>
-                <Link href={`/dui-defense/${p.slug}`}>
-                  <span className="hover:text-primary transition-colors cursor-pointer">{p.title}</span>
+            {PRACTICE_AREAS.map((area) => (
+              <li key={area.slug}>
+                <Link href={`/${area.slug}`}>
+                  <span className="hover:text-primary transition-colors cursor-pointer">{area.title}</span>
                 </Link>
               </li>
             ))}
@@ -121,6 +104,9 @@ export default function Footer() {
             </Link>
             <Link href="/privacy-policy">
               <span className="hover:text-primary transition-colors cursor-pointer">Privacy Policy</span>
+            </Link>
+            <Link href="/terms-and-conditions">
+              <span className="hover:text-primary transition-colors cursor-pointer">Terms & Conditions</span>
             </Link>
             <Link href="/sitemap">
               <span className="hover:text-primary transition-colors cursor-pointer">Sitemap</span>

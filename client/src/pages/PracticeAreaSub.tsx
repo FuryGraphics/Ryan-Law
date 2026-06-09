@@ -6,8 +6,9 @@ import FloatingCallButton from "@/components/FloatingCallButton";
 import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES, CLIENT_INFO } from "@/lib/routes";
-import { ChevronDown, CheckCircle, Scale, Shield, Gavel, HelpCircle } from "lucide-react";
+import { getPracticeArea, CLIENT_INFO } from "@/lib/routes";
+import NotFound from "@/pages/NotFound";
+import { ChevronDown, CheckCircle, Scale, Shield, Gavel, Car, HeartCrack, FileCheck, HelpCircle } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -15,17 +16,28 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+const ICONS: Record<string, typeof Gavel> = {
+  gavel: Gavel,
+  shield: Shield,
+  car: Car,
+  "heart-crack": HeartCrack,
+  "file-check": FileCheck
+};
+
 interface PracticeAreaSubProps {
-  parentType: "criminal-defense" | "dui-defense";
+  parentType: string;
   subSlug: string;
 }
 
 export default function PracticeAreaSub({ parentType, subSlug }: PracticeAreaSubProps) {
-  const isCriminal = parentType === "criminal-defense";
-  const list = isCriminal ? CRIMINAL_DEFENSE_SUBPAGES : DUI_DEFENSE_SUBPAGES;
-  const currentSub = list.find((p) => p.slug === subSlug) || list[0];
+  const area = getPracticeArea(parentType);
+  if (!area) return <NotFound />;
 
-  const parentTitle = isCriminal ? "Criminal Defense" : "DUI Defense";
+  const list = area.subpages;
+  const currentSub = list.find((p) => p.slug === subSlug) || list[0];
+  const ParentIcon = ICONS[area.iconKey] ?? Gavel;
+
+  const parentTitle = area.title;
 
   // Detailed templates based on sub-slug
   const subTitle = currentSub.title;
@@ -127,7 +139,7 @@ export default function PracticeAreaSub({ parentType, subSlug }: PracticeAreaSub
         <div className="container grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5 flex flex-col gap-4">
             <div className="p-4 bg-card border border-white/5 rounded-sm w-fit">
-              {isCriminal ? <Gavel className="w-8 h-8 text-primary" /> : <Shield className="w-8 h-8 text-primary" />}
+              <ParentIcon className="w-8 h-8 text-primary" />
             </div>
             <h2 className="font-serif text-2xl md:text-3xl font-bold text-foreground">
               How We Build Your {subTitle} Defense

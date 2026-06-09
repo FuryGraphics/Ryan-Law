@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { CLIENT_INFO, CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES } from "@/lib/routes";
+import { CLIENT_INFO, PRACTICE_AREAS } from "@/lib/routes";
 import { Menu, X, ChevronDown, Phone, MapPin, Clock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -30,24 +30,11 @@ export default function Navigation() {
     {
       name: "Practice Areas",
       href: "/practice-areas",
-      dropdown: [
-        {
-          title: "Criminal Defense",
-          href: "/criminal-defense",
-          items: CRIMINAL_DEFENSE_SUBPAGES.slice(0, 6).map(p => ({
-            name: p.title,
-            href: `/criminal-defense/${p.slug}`
-          }))
-        },
-        {
-          title: "DUI Defense",
-          href: "/dui-defense",
-          items: DUI_DEFENSE_SUBPAGES.slice(0, 6).map(p => ({
-            name: p.title,
-            href: `/dui-defense/${p.slug}`
-          }))
-        }
-      ]
+      dropdown: PRACTICE_AREAS.map((area) => ({
+        title: area.title,
+        href: `/${area.slug}`,
+        desc: area.tagline
+      }))
     },
     { name: "Reviews", href: "/testimonials" },
     { name: "Blog", href: "/blog" },
@@ -141,37 +128,27 @@ export default function Navigation() {
                 </Link>
               )}
 
-              {/* Mega Dropdown Menu */}
+              {/* Practice Areas Dropdown */}
               {link.dropdown && activeDropdown === link.name && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-[600px]">
-                  <div className="bg-card border border-white/10 p-6 rounded-md shadow-2xl grid grid-cols-2 gap-8 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-4 w-[340px]">
+                  <div className="bg-card border border-white/10 p-3 rounded-md shadow-2xl flex flex-col animate-in fade-in slide-in-from-top-2 duration-200">
                     {link.dropdown.map((section) => (
-                      <div key={section.title}>
-                        <Link href={section.href}>
-                          <h4 className="font-serif text-base font-semibold text-primary mb-3 hover:underline cursor-pointer">
+                      <Link key={section.title} href={section.href}>
+                        <div className="px-3 py-2.5 rounded-sm hover:bg-white/5 transition-colors cursor-pointer group/item">
+                          <h4 className="font-serif text-sm font-semibold text-foreground group-hover/item:text-primary transition-colors">
                             {section.title}
                           </h4>
-                        </Link>
-                        <ul className="space-y-2">
-                          {section.items.map((item) => (
-                            <li key={item.name}>
-                              <Link href={item.href}>
-                                <span className="text-xs text-muted-foreground hover:text-primary transition-colors block py-1 cursor-pointer">
-                                  {item.name}
-                                </span>
-                              </Link>
-                            </li>
-                          ))}
-                          <li>
-                            <Link href={section.href}>
-                              <span className="text-xs text-primary font-medium hover:underline cursor-pointer block pt-2">
-                                View All Services →
-                              </span>
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
+                          <p className="text-[11px] text-muted-foreground font-sans mt-0.5">
+                            {section.desc}
+                          </p>
+                        </div>
+                      </Link>
                     ))}
+                    <Link href="/practice-areas">
+                      <span className="text-xs text-primary font-medium hover:underline cursor-pointer block px-3 pt-2 pb-1 border-t border-white/5 mt-1">
+                        View All Practice Areas →
+                      </span>
+                    </Link>
                   </div>
                 </div>
               )}
@@ -228,25 +205,24 @@ export default function Navigation() {
                       />
                     </button>
                     {activeDropdown === link.name && (
-                      <div className="pl-4 flex flex-col gap-4 py-2 animate-in slide-in-from-top-1 duration-200">
+                      <div className="pl-4 flex flex-col gap-1 py-2 animate-in slide-in-from-top-1 duration-200">
                         {link.dropdown.map((section) => (
-                          <div key={section.title} className="flex flex-col gap-2">
-                            <Link href={section.href}>
-                              <span className="font-serif text-sm font-semibold text-primary cursor-pointer">
+                          <Link key={section.title} href={section.href}>
+                            <div className="py-2 cursor-pointer">
+                              <span className="font-serif text-sm font-semibold text-primary">
                                 {section.title}
                               </span>
-                            </Link>
-                            <div className="grid grid-cols-2 gap-2 pl-2">
-                              {section.items.map((item) => (
-                                <Link key={item.name} href={item.href}>
-                                  <span className="text-xs text-muted-foreground py-1 cursor-pointer">
-                                    {item.name}
-                                  </span>
-                                </Link>
-                              ))}
+                              <p className="text-[11px] text-muted-foreground font-sans">
+                                {section.desc}
+                              </p>
                             </div>
-                          </div>
+                          </Link>
                         ))}
+                        <Link href="/practice-areas">
+                          <span className="text-xs text-primary font-medium py-2 cursor-pointer block">
+                            View All Practice Areas →
+                          </span>
+                        </Link>
                       </div>
                     )}
                   </>

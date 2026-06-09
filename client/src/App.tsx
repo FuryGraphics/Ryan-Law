@@ -16,7 +16,8 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
-import { Disclaimer, PrivacyPolicy, SitemapPage } from "./pages/Utilities";
+import { Disclaimer, PrivacyPolicy, TermsAndConditions, SitemapPage } from "./pages/Utilities";
+import { PRACTICE_AREAS, LOCATION_PAGES } from "./lib/routes";
 
 function Router() {
   return (
@@ -32,40 +33,27 @@ function Router() {
       {/* Utility Pages */}
       <Route path="/disclaimer" component={Disclaimer} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-and-conditions" component={TermsAndConditions} />
       <Route path="/sitemap" component={SitemapPage} />
 
-      {/* Practice Area Parents */}
-      <Route path="/criminal-defense">
-        <PracticeAreaParent type="criminal-defense" />
-      </Route>
-      <Route path="/dui-defense">
-        <PracticeAreaParent type="dui-defense" />
-      </Route>
+      {/* Practice Area Hubs + Sub-pages (generated from config) */}
+      {PRACTICE_AREAS.map((area) => (
+        <Route key={area.slug} path={`/${area.slug}`}>
+          <PracticeAreaParent type={area.slug} />
+        </Route>
+      ))}
+      {PRACTICE_AREAS.map((area) => (
+        <Route key={`${area.slug}-sub`} path={`/${area.slug}/:subSlug`}>
+          {(params) => <PracticeAreaSub parentType={area.slug} subSlug={params.subSlug} />}
+        </Route>
+      ))}
 
-      {/* Practice Area Subs */}
-      <Route path="/criminal-defense/:subSlug">
-        {(params) => <PracticeAreaSub parentType="criminal-defense" subSlug={params.subSlug} />}
-      </Route>
-      <Route path="/dui-defense/:subSlug">
-        {(params) => <PracticeAreaSub parentType="dui-defense" subSlug={params.subSlug} />}
-      </Route>
-
-      {/* Location Pages */}
-      <Route path="/bel-air-md">
-        <Location slug="bel-air-md" />
-      </Route>
-      <Route path="/harford-county">
-        <Location slug="harford-county" />
-      </Route>
-      <Route path="/cecil-county">
-        <Location slug="cecil-county" />
-      </Route>
-      <Route path="/baltimore-county">
-        <Location slug="baltimore-county" />
-      </Route>
-      <Route path="/washington-dc">
-        <Location slug="washington-dc" />
-      </Route>
+      {/* Location Pages (generated from config) */}
+      {LOCATION_PAGES.map((loc) => (
+        <Route key={loc.slug} path={`/${loc.slug}`}>
+          <Location slug={loc.slug} />
+        </Route>
+      ))}
 
       {/* Blog Posts */}
       <Route path="/blog/:slug">
