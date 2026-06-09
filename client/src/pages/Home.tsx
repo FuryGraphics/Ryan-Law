@@ -182,7 +182,7 @@ export default function Home() {
               <img
                 src={CLIENT_INFO.images.portrait}
                 alt="James Ryan Attorney Silhouette"
-                className="w-full h-auto grayscale brightness-90 contrast-105 rounded-sm"
+                className="w-full h-auto rounded-sm"
               />
               <div className="absolute bottom-6 left-6 right-6 bg-background/90 backdrop-blur-md border border-white/10 p-4 rounded-sm">
                 <p className="font-serif text-lg font-bold text-primary">{CLIENT_INFO.attorney}</p>
@@ -254,7 +254,7 @@ export default function Home() {
               <img
                 src={CLIENT_INFO.images.portrait}
                 alt="James Ryan Attorney Profile"
-                className="w-full h-auto grayscale rounded-sm"
+                className="w-full h-auto rounded-sm"
               />
               <div className="absolute top-8 right-8 bg-primary text-primary-foreground font-sans font-bold text-xs tracking-widest uppercase py-2 px-4 rounded-sm shadow-lg">
                 100% DEFENSE

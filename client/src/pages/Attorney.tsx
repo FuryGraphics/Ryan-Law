@@ -62,7 +62,7 @@ export default function Attorney() {
               <img
                 src={CLIENT_INFO.images.portrait}
                 alt="James Ryan Attorney Portrait"
-                className="w-full h-auto grayscale rounded-sm"
+                className="w-full h-auto rounded-sm"
               />
             </div>
 

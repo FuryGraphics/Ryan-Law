@@ -19,7 +19,7 @@ export const CLIENT_INFO = {
   serviceAreas: ["Harford County", "Cecil County", "Baltimore County", "Washington DC"],
   hours: "Mon–Fri 9am–6pm, Sat by appt",
   images: {
-    portrait: "https://d2xsxph8kpxj0f.cloudfront.net/310519663703679771/86bsyXg3nUQiFFCXn5o5yc/james-ryan-portrait-dG5S9v8aWV4iBKK5nEnKRy.webp",
+    portrait: "/james-ryan-portrait.jpg",
     heroBg: "https://d2xsxph8kpxj0f.cloudfront.net/310519663703679771/86bsyXg3nUQiFFCXn5o5yc/law-hero-bg-ZxmbDEbRWf68j8PSramZkV.webp"
   }
 };
