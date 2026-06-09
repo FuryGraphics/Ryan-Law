@@ -1,180 +1,62 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { toast } from "sonner";
-import { ShieldCheck, Send, Loader2 } from "lucide-react";
-
-const formSchema = z.object({
-  firstName: z.string().min(2, "First name is required"),
-  lastName: z.string().min(2, "Last name is required"),
-  phone: z.string().min(10, "Valid phone number is required"),
-  email: z.string().email("Valid email is required"),
-  facing: z.string().min(1, "Please select what you are facing"),
-  message: z.string().min(10, "Please describe your situation in more detail (min 10 characters)"),
-});
-
-type FormValues = z.infer<typeof formSchema>;
+import { CLIENT_INFO } from "@/lib/routes";
+import { Mail, Phone, ShieldCheck } from "lucide-react";
 
 export default function ContactForm() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    reset,
-    formState: { errors },
-  } = useForm<FormValues>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      phone: "",
-      email: "",
-      facing: "",
-      message: "",
-    },
-  });
-
-  const onSubmit = async (data: FormValues) => {
-    setIsSubmitting(true);
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    toast.success("Consultation Request Received", {
-      description: "James Ryan will review your message and contact you directly within 24 hours.",
-    });
-    reset();
-  };
+  const emailHref = `mailto:${CLIENT_INFO.email}?subject=${encodeURIComponent(
+    "Free Case Evaluation Request"
+  )}&body=${encodeURIComponent(
+    "Hello James,\n\nI would like to request a free, confidential consultation regarding my legal matter.\n\nName:\nPhone:\nWhat I'm facing (DUI / Criminal / Traffic / Other):\nBrief summary:\n\nThank you."
+  )}`;
 
   return (
-    <div className="bg-card border border-white/5 rounded-sm p-6 md:p-8 shadow-2xl relative overflow-hidden">
+    <div className="bg-card border border-white/5 rounded-sm p-6 md:p-10 shadow-2xl relative overflow-hidden text-center flex flex-col items-center">
       {/* Accent subtle background glow */}
       <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="mb-6">
-        <h3 className="font-serif text-2xl font-semibold text-foreground mb-2">
-          Request a Free Case Evaluation
-        </h3>
-        <p className="text-xs text-muted-foreground font-sans leading-relaxed">
-          Fill out the form below to connect directly with James Ryan. Your consultation is completely confidential and free of charge.
-        </p>
+      <div className="p-4 bg-background border border-white/5 rounded-sm mb-5">
+        <Mail className="w-7 h-7 text-primary" />
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 font-sans">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-1">
-            <Input
-              placeholder="First Name"
-              className="bg-background border-white/10 text-sm focus-visible:ring-primary rounded-none"
-              {...register("firstName")}
-            />
-            {errors.firstName && (
-              <p className="text-[11px] text-destructive">{errors.firstName.message}</p>
-            )}
-          </div>
-          <div className="space-y-1">
-            <Input
-              placeholder="Last Name"
-              className="bg-background border-white/10 text-sm focus-visible:ring-primary rounded-none"
-              {...register("lastName")}
-            />
-            {errors.lastName && (
-              <p className="text-[11px] text-destructive">{errors.lastName.message}</p>
-            )}
-          </div>
-        </div>
+      <h3 className="font-serif text-2xl md:text-3xl font-semibold text-foreground mb-3">
+        Request a Free Case Evaluation
+      </h3>
+      <p className="text-xs md:text-sm text-muted-foreground font-sans leading-relaxed max-w-md mb-7">
+        Email James Ryan directly to start your free, confidential consultation. He
+        personally reviews every message and responds promptly.
+      </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-1">
-            <Input
-              type="tel"
-              placeholder="Phone Number"
-              className="bg-background border-white/10 text-sm focus-visible:ring-primary rounded-none"
-              {...register("phone")}
-            />
-            {errors.phone && (
-              <p className="text-[11px] text-destructive">{errors.phone.message}</p>
-            )}
-          </div>
-          <div className="space-y-1">
-            <Input
-              type="email"
-              placeholder="Email Address"
-              className="bg-background border-white/10 text-sm focus-visible:ring-primary rounded-none"
-              {...register("email")}
-            />
-            {errors.email && (
-              <p className="text-[11px] text-destructive">{errors.email.message}</p>
-            )}
-          </div>
-        </div>
-
-        <div className="space-y-1">
-          <Select onValueChange={(val) => setValue("facing", val)}>
-            <SelectTrigger className="bg-background border-white/10 text-sm text-muted-foreground focus-visible:ring-primary rounded-none">
-              <SelectValue placeholder="What legal issue are you facing?" />
-            </SelectTrigger>
-            <SelectContent className="bg-card border-white/10 text-foreground">
-              <SelectItem value="DUI Charge">DUI Charge</SelectItem>
-              <SelectItem value="Criminal Charge">Criminal Charge</SelectItem>
-              <SelectItem value="Traffic Violation">Traffic Violation</SelectItem>
-              <SelectItem value="Other">Other / Not Listed</SelectItem>
-            </SelectContent>
-          </Select>
-          {errors.facing && (
-            <p className="text-[11px] text-destructive">{errors.facing.message}</p>
-          )}
-        </div>
-
-        <div className="space-y-1">
-          <Textarea
-            placeholder="Describe what happened (Do not include extremely sensitive details)"
-            rows={4}
-            className="bg-background border-white/10 text-sm focus-visible:ring-primary rounded-none resize-none"
-            {...register("message")}
-          />
-          {errors.message && (
-            <p className="text-[11px] text-destructive">{errors.message.message}</p>
-          )}
-        </div>
-
-        <Button
-          type="submit"
-          disabled={isSubmitting}
-          className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-6 rounded-none text-sm transition-all active:scale-[0.98] flex items-center justify-center gap-2"
+      <div className="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+        <a
+          href={emailHref}
+          className="flex-1 flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-bold text-sm py-4 px-6 rounded-sm transition-all shadow-md active:scale-[0.98]"
         >
-          {isSubmitting ? (
-            <>
-              <Loader2 className="w-4 h-4 animate-spin" />
-              <span>Processing Case Details...</span>
-            </>
-          ) : (
-            <>
-              <Send className="w-4 h-4" />
-              <span>Request Free Evaluation</span>
-            </>
-          )}
-        </Button>
+          <Mail className="w-4 h-4" />
+          <span>Email James Ryan</span>
+        </a>
+        <a
+          href={CLIENT_INFO.phoneRaw}
+          className="flex-1 flex items-center justify-center gap-2 border border-white/15 hover:border-primary hover:bg-primary/5 text-foreground font-sans font-medium text-sm py-4 px-6 rounded-sm transition-all active:scale-[0.98]"
+        >
+          <Phone className="w-4 h-4 text-primary" />
+          <span>{CLIENT_INFO.phone}</span>
+        </a>
+      </div>
 
-        <div className="flex items-start gap-2 pt-2 text-[10px] text-muted-foreground leading-relaxed">
-          <ShieldCheck className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-          <p>
-            By submitting this form, you agree to be contacted by Ryan Law LLC by phone, text, or email. Your submission is fully protected under legal confidentiality rules, but does not form a binding attorney-client relationship.
-          </p>
-        </div>
-      </form>
+      <p className="text-[11px] text-muted-foreground font-sans mt-4">
+        Or email us at{" "}
+        <a href={emailHref} className="text-primary hover:underline">
+          {CLIENT_INFO.email}
+        </a>
+      </p>
+
+      <div className="flex items-start gap-2 pt-6 mt-6 border-t border-white/5 text-[10px] text-muted-foreground leading-relaxed text-left max-w-md">
+        <ShieldCheck className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+        <p>
+          Contacting Ryan Law LLC does not form a binding attorney-client relationship.
+          Please avoid sending extremely sensitive details until formal representation is
+          established.
+        </p>
+      </div>
     </div>
   );
 }
