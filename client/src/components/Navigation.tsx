@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { CLIENT_INFO, CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES } from "@/lib/routes";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, MapPin, Clock, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Navigation() {
@@ -55,13 +55,51 @@ export default function Navigation() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-white/5 py-4 shadow-lg"
-          : "bg-transparent py-6"
-      }`}
-    >
+    <header className="fixed top-0 left-0 right-0 z-50">
+      {/* Top Utility Bar */}
+      <div
+        className={`hidden md:block bg-primary text-primary-foreground overflow-hidden transition-all duration-300 ${
+          isScrolled ? "max-h-0 opacity-0" : "max-h-12 opacity-100"
+        }`}
+      >
+        <div className="container flex items-center justify-between py-2.5 text-xs font-sans">
+          <div className="flex items-center gap-6">
+            <span className="flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5" />
+              {CLIENT_INFO.address}
+            </span>
+            <span className="hidden lg:flex items-center gap-1.5">
+              <Clock className="w-3.5 h-3.5" />
+              {CLIENT_INFO.hours}
+            </span>
+          </div>
+          <div className="flex items-center gap-6">
+            <a
+              href={`mailto:${CLIENT_INFO.email}`}
+              className="hidden lg:flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              {CLIENT_INFO.email}
+            </a>
+            <a
+              href={CLIENT_INFO.phoneRaw}
+              className="flex items-center gap-1.5 font-bold hover:opacity-80 transition-opacity"
+            >
+              <Phone className="w-3.5 h-3.5" />
+              {CLIENT_INFO.phone}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Navigation Bar */}
+      <div
+        className={`transition-all duration-300 ${
+          isScrolled
+            ? "bg-background/95 backdrop-blur-md border-b border-white/5 py-3 shadow-lg"
+            : "bg-background/80 backdrop-blur-sm border-b border-white/5 py-4"
+        }`}
+      >
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
@@ -142,14 +180,20 @@ export default function Navigation() {
         </nav>
 
         {/* Call CTA Button & Mobile Toggle */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <a
             href={CLIENT_INFO.phoneRaw}
-            className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-semibold text-sm py-2.5 px-5 rounded-sm transition-all shadow-md active:scale-[0.97]"
+            className="hidden xl:flex items-center gap-2 text-sm font-sans font-semibold text-foreground/90 hover:text-primary transition-colors"
           >
-            <Phone className="w-4 h-4" />
-            <span>Call Now — {CLIENT_INFO.phone}</span>
+            <Phone className="w-4 h-4 text-primary" />
+            <span>{CLIENT_INFO.phone}</span>
           </a>
+
+          <Link href="/contact">
+            <span className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-semibold text-sm py-2.5 px-5 rounded-sm transition-all shadow-md active:scale-[0.97] cursor-pointer">
+              Free Consultation
+            </span>
+          </Link>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -159,6 +203,7 @@ export default function Navigation() {
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
+      </div>
       </div>
 
       {/* Mobile Navigation Drawer */}
