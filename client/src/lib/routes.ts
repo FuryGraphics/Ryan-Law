@@ -9,8 +9,8 @@ export interface RouteInfo {
 export const CLIENT_INFO = {
   name: "Ryan Law LLC",
   attorney: "James Ryan",
-  phone: "(917) 576-4324",
-  phoneRaw: "tel:+19175764324",
+  phone: "(443) 348-0434",
+  phoneRaw: "tel:+14433480434",
   email: "james@ryanlaw.us",
   address: "16a Bel Air South Pkwy, Bel Air, MD 21015",
   domain: "www.ryanlaw.us",
@@ -21,6 +21,33 @@ export const CLIENT_INFO = {
   images: {
     portrait: "/manus-storage/james-ryan-portrait_b514a8e2.jpg",
     heroBg: "https://d2xsxph8kpxj0f.cloudfront.net/310519663703679771/86bsyXg3nUQiFFCXn5o5yc/law-hero-bg-ZxmbDEbRWf68j8PSramZkV.webp"
+  }
+};
+
+export const LOCATION_CONFIGS = {
+  "bel-air": {
+    name: "Bel Air",
+    city: "Bel Air, MD",
+    phone: "(443) 348-0434",
+    phoneRaw: "tel:+14433480434",
+    address: "16a Bel Air South Pkwy, Bel Air, MD 21015",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3076.657387441314!2d-76.3533814!3d39.5006323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c7de29f27c320f%3A0x24d63428987d609c!2s16a%20Bel%20Air%20South%20Pkwy%2C%20Bel%20Air%2C%20MD%2021015!5e0!3m2!1sen!2sus!4v1717320000000!5m2!1sen!2sus"
+  },
+  "towson": {
+    name: "Towson",
+    city: "Towson, MD",
+    phone: "(443) 348-0434",
+    phoneRaw: "tel:+14433480434",
+    address: "Towson, MD (By Appointment Only)",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49286.32135687353!2d-76.63581535!3d39.39243555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c80ea2999e0337%3A0x7e8b9195b22f03f7!2sTowson%2C%20MD!5e0!3m2!1sen!2sus!4v1717320000000!5m2!1sen!2sus"
+  },
+  "dc": {
+    name: "Washington DC",
+    city: "Washington, DC",
+    phone: "(202) 519-1935",
+    phoneRaw: "tel:+12025191935",
+    address: "Washington, DC (By Appointment Only)",
+    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12420.211438965825!2d-77.0368707!3d38.9071923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b7bcdecbb76f%3A0x12ec7226124911e7!2sWashington%2C%20DC!5e0!3m2!1sen!2sus!4v1717320000000!5m2!1sen!2sus"
   }
 };
 

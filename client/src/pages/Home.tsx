@@ -7,6 +7,7 @@ import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
 import { CLIENT_INFO, CORE_PAGES } from "@/lib/routes";
 import { Button } from "@/components/ui/button";
+import { useLocationSettings } from "@/contexts/LocationContext";
 import {
   Phone,
   Shield,
@@ -23,7 +24,30 @@ import {
 } from "lucide-react";
 
 export default function Home() {
+  const { currentLocation, locationKey } = useLocationSettings();
   const pageInfo = CORE_PAGES.home;
+
+  // Custom SEO titles based on detected location context
+  const getLocalizedSEO = () => {
+    if (locationKey === "dc") {
+      return {
+        title: "Criminal Defense Attorney Washington DC | Ryan Law LLC",
+        desc: "Facing criminal or DUI charges in Washington DC? Contact James Ryan at Ryan Law LLC for an aggressive, strategic defense. Free consultations: (202) 519-1935."
+      };
+    } else if (locationKey === "towson") {
+      return {
+        title: "Criminal Defense Attorney Towson MD | Baltimore County Lawyer",
+        desc: "Facing criminal or DUI charges in Baltimore County? Contact James Ryan at Ryan Law LLC in Towson, MD for an aggressive, strategic defense. Free consultations: (443) 348-0434."
+      };
+    } else {
+      return {
+        title: "Criminal Defense Attorney Bel Air, MD | Ryan Law LLC",
+        desc: "Facing criminal or DUI charges in Maryland? Contact James Ryan at Ryan Law LLC in Bel Air, MD for an aggressive, strategic defense. Free consultations: (443) 348-0434."
+      };
+    }
+  };
+
+  const localizedSEO = getLocalizedSEO();
 
   const trustSignals = [
     { icon: Calendar, title: "Free Consultation", desc: "Speak directly with James Ryan today" },
@@ -31,19 +55,19 @@ export default function Home() {
     { icon: Scale, title: "MD & DC Courtroom Savvy", desc: "Aggressive, proven trial strategy" },
     { icon: Award, title: "Affordable Payment Plans", desc: "Premium legal defense made accessible" },
     { icon: Gavel, title: "Aggressive Defense", desc: "Uncompromising protection of your rights" },
-    { icon: MapPin, title: "Local Representation", desc: "Bel Air, Harford, Cecil & Baltimore Courts" }
+    { icon: MapPin, title: "Local Representation", desc: `Serving ${currentLocation.name} & surrounding courts` }
   ];
 
   const practiceAreas = [
     {
       title: "Criminal Defense",
-      desc: "Facing misdemeanor or felony charges in Maryland? We build bulletproof, strategic defenses to protect your freedom, career, and reputation.",
+      desc: `Facing misdemeanor or felony charges in ${currentLocation.city}? We build bulletproof, strategic defenses to protect your freedom, career, and reputation.`,
       href: "/criminal-defense",
       icon: Gavel
     },
     {
       title: "DUI Defense",
-      desc: "Arrested for driving under the influence? We challenge breathalyzer results, field sobriety tests, and traffic stops to fight for your driver's license.",
+      desc: `Arrested for driving under the influence in ${currentLocation.city}? We challenge breathalyzer results, field sobriety tests, and traffic stops to fight for your driver's license.`,
       href: "/dui-defense",
       icon: Shield
     }
@@ -60,21 +84,21 @@ export default function Home() {
   const reviews = [
     {
       stars: 5,
-      quote: "James Ryan completely saved my future. I was facing a serious DUI charge in Harford County, but he identified an issue with the breathalyzer test and got the case dismissed.",
+      quote: `James Ryan completely saved my future. I was facing a serious DUI charge in ${currentLocation.name}, but he identified an issue with the evidence and got the case dismissed.`,
       author: "Robert",
-      location: "Harford County"
+      location: currentLocation.name
     },
     {
       stars: 5,
-      quote: "I can't recommend Ryan Law LLC enough. He was extremely responsive, answered my late-night calls, and walked me through every step of my criminal defense. Professionalism at its finest.",
+      quote: `I can't recommend Ryan Law LLC enough. He was extremely responsive, answered my late-night calls, and walked me through every step of my criminal defense. Professionalism at its finest.`,
       author: "Sarah",
-      location: "Baltimore County"
+      location: currentLocation.name
     },
     {
       stars: 5,
-      quote: "Aggressive, professional, and compassionate. James Ryan fought my drug possession charges in Cecil County and secured a favorable outcome that allowed me to keep my job.",
+      quote: `Aggressive, professional, and compassionate. James Ryan fought my drug possession charges in ${currentLocation.name} and secured a favorable outcome that allowed me to keep my job.`,
       author: "Marcus",
-      location: "Cecil County"
+      location: currentLocation.name
     }
   ];
 
@@ -101,8 +125,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/20 selection:text-primary">
       <SEO
-        title={pageInfo.seoTitle}
-        description={pageInfo.metaDescription}
+        title={localizedSEO.title}
+        description={localizedSEO.desc}
         schemaType="LegalService"
       />
 
@@ -135,7 +159,7 @@ export default function Home() {
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-foreground leading-[1.1]">
                 Criminal Defense & DUI Attorney Serving{" "}
-                <span className="text-primary">Bel Air, MD</span> and Surrounding Counties
+                <span className="text-primary">{currentLocation.city}</span> and Surrounding Counties
               </h1>
               {/* Gold Accent Line */}
               <div className="w-24 h-1 bg-primary mt-2" />
@@ -147,7 +171,7 @@ export default function Home() {
               variants={fadeInUp}
               className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl font-sans font-light"
             >
-              When your freedom, reputation, and livelihood are on the line, you cannot afford to leave your defense to chance. Attorney James Ryan provides relentless, strategic, and highly personalized defense representation.
+              When your freedom, reputation, and livelihood are on the line, you cannot afford to leave your defense to chance. Attorney James Ryan provides relentless, strategic, and highly personalized defense representation in {currentLocation.name}.
             </motion.p>
 
             <motion.div
@@ -157,11 +181,11 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-4 pt-4"
             >
               <a
-                href={CLIENT_INFO.phoneRaw}
+                href={currentLocation.phoneRaw}
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-bold text-base py-4 px-8 rounded-sm transition-all shadow-lg text-center flex items-center justify-center gap-2 active:scale-[0.98]"
               >
                 <Phone className="w-5 h-5 fill-current" />
-                <span>Call Now — {CLIENT_INFO.phone}</span>
+                <span>Call Now — {currentLocation.phone}</span>
               </a>
               <Link href="/contact">
                 <span className="border border-white/20 hover:border-primary hover:bg-primary/5 text-foreground font-sans font-medium text-base py-4 px-8 rounded-sm transition-all text-center cursor-pointer block">
@@ -287,10 +311,10 @@ export default function Home() {
               className="text-sm md:text-base text-muted-foreground leading-relaxed font-sans font-light flex flex-col gap-4"
             >
               <p>
-                James Ryan, the founder of Ryan Law LLC, is an aggressive, dedicated criminal defense attorney serving Harford County, Cecil County, Baltimore County, and Washington DC. He represents clients facing a broad spectrum of state and federal criminal charges, ranging from serious felonies and complex drug conspiracies to DUI defense and high-stakes traffic violations.
+                James Ryan, the founder of Ryan Law LLC, is an aggressive, dedicated criminal defense attorney serving {currentLocation.city} and surrounding jurisdictions. He represents clients facing a broad spectrum of state and federal criminal charges, ranging from serious felonies and complex drug conspiracies to DUI defense and high-stakes traffic violations.
               </p>
               <p>
-                Unlike massive, assembly-line firms where cases are passed down to paralegals or junior associates, James Ryan handles every file personally. He believes that a successful defense starts with direct, open communication. When you call Ryan Law LLC, you speak directly to your attorney. We analyze every piece of evidence, challenge procedural violations, and fight tirelessly for dismissals, reduced charges, or complete acquittals.
+                Unlike massive, assembly-line firms where cases are passed down to paralegals or junior associates, James Ryan handles every file personally. He believes that a successful defense starts with direct, open communication. When you call Ryan Law LLC, you speak directly to your attorney. We analyze every piece of evidence, challenge procedural violations, and fight tirelessly for dismissals, reduced charges, or complete acquittals in {currentLocation.name} courts.
               </p>
             </motion.div>
 
@@ -345,18 +369,18 @@ export default function Home() {
                   <div className="p-4 bg-background border border-white/5 rounded-sm w-fit group-hover:border-primary/30 transition-colors duration-300">
                     <area.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                     {area.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-muted-foreground leading-relaxed font-sans font-light">
+                  <p className="text-xs md:text-sm text-muted-foreground font-sans leading-relaxed">
                     {area.desc}
                   </p>
                 </div>
 
-                <div className="pt-6">
+                <div className="pt-6 border-t border-white/5 mt-6">
                   <Link href={area.href}>
                     <span className="inline-flex items-center gap-1.5 text-xs text-primary font-medium hover:underline cursor-pointer">
-                      <span>Explore {area.title} Hub</span>
+                      <span>Explore Defense Services</span>
                       <ChevronRight className="w-3.5 h-3.5" />
                     </span>
                   </Link>
@@ -367,49 +391,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Service Areas Section */}
-      <section className="py-20 bg-background border-t border-white/5 relative">
-        <div className="container flex flex-col gap-12">
-          <div className="text-center flex flex-col items-center gap-3">
-            <span className="text-primary font-sans text-xs font-bold tracking-[0.3em] uppercase">
-              REGIONAL COVERAGE
-            </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground">
-              Serving Clients Across Maryland & Washington DC
-            </h2>
-            <div className="w-16 h-1 bg-primary" />
-          </div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto"
-          >
-            {locations.map((loc) => (
-              <motion.div key={loc.slug} variants={fadeInUp}>
-                <Link href={`/${loc.slug}`}>
-                  <span className="inline-flex items-center gap-2 bg-card border border-white/5 hover:border-primary/30 py-3.5 px-6 rounded-sm text-sm font-sans font-medium hover:text-primary transition-all cursor-pointer shadow-md">
-                    <MapPin className="w-4 h-4 text-primary shrink-0" />
-                    <span>{loc.name}</span>
-                  </span>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Reviews / Testimonials Strip */}
-      <section className="py-24 bg-[#050505] border-t border-white/5 relative overflow-hidden">
+      {/* Reviews Section */}
+      <section className="py-24 bg-background border-t border-white/5 relative">
         <div className="container flex flex-col gap-12">
           <div className="text-center flex flex-col items-center gap-3">
             <span className="text-primary font-sans text-xs font-bold tracking-[0.3em] uppercase">
               CLIENT TESTIMONIALS
             </span>
             <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground">
-              What Our Clients Say About Us
+              What Our Clients Say
             </h2>
             <div className="w-16 h-1 bg-primary" />
           </div>
@@ -419,33 +409,30 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto w-full"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {reviews.map((rev, i) => (
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                className="bg-card border border-white/5 p-8 rounded-sm flex flex-col justify-between relative shadow-xl"
+                className="bg-card border border-white/5 p-6 rounded-sm flex flex-col justify-between relative"
               >
-                <Quote className="absolute top-6 right-6 w-8 h-8 text-white/5 pointer-events-none" />
-
+                <Quote className="absolute top-6 right-6 w-8 h-8 text-primary/10" />
                 <div className="flex flex-col gap-4">
-                  {/* Stars */}
-                  <div className="flex items-center gap-1">
+                  <div className="flex gap-1">
                     {[...Array(rev.stars)].map((_, idx) => (
-                      <Star key={idx} className="w-4 h-4 text-primary fill-current" />
+                      <Star key={idx} className="w-4 h-4 text-primary fill-primary" />
                     ))}
                   </div>
-                  <p className="text-xs md:text-sm text-muted-foreground italic leading-relaxed font-sans font-light">
+                  <p className="text-xs md:text-sm text-muted-foreground font-sans leading-relaxed italic">
                     "{rev.quote}"
                   </p>
                 </div>
-
-                <div className="pt-6 border-t border-white/5 mt-6">
-                  <p className="font-serif text-sm font-bold text-foreground">{rev.author}</p>
-                  <p className="text-[10px] tracking-wider uppercase text-muted-foreground font-sans">
+                <div className="pt-4 border-t border-white/5 mt-6 flex flex-col">
+                  <span className="font-serif text-sm font-bold text-foreground">{rev.author}</span>
+                  <span className="text-[10px] text-muted-foreground font-sans uppercase tracking-wider mt-0.5">
                     {rev.location} Client
-                  </p>
+                  </span>
                 </div>
               </motion.div>
             ))}
@@ -472,15 +459,15 @@ export default function Home() {
             Facing Criminal Charges or a DUI? Don't Wait.
           </h2>
           <p className="font-sans text-sm md:text-base text-primary-foreground/90 leading-relaxed max-w-2xl font-light">
-            Every hour you wait is an hour the prosecution uses to build their case. Protect your rights immediately with aggressive legal counsel.
+            Every hour you wait is an hour the prosecution uses to build their case. Protect your rights immediately with aggressive legal counsel in {currentLocation.name}.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full sm:w-auto">
             <a
-              href={CLIENT_INFO.phoneRaw}
+              href={currentLocation.phoneRaw}
               className="bg-background hover:bg-background/95 text-foreground font-sans font-bold text-base py-4 px-8 rounded-sm transition-all shadow-xl text-center flex items-center justify-center gap-2 active:scale-[0.98]"
             >
               <Phone className="w-5 h-5 fill-current text-primary" />
-              <span>Call James Ryan: {CLIENT_INFO.phone}</span>
+              <span>Call James Ryan: {currentLocation.phone}</span>
             </a>
             <Link href="/contact">
               <span className="border border-primary-foreground/30 hover:border-primary-foreground hover:bg-white/5 text-primary-foreground font-sans font-medium text-base py-4 px-8 rounded-sm transition-all text-center cursor-pointer block">

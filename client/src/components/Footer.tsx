@@ -1,8 +1,11 @@
 import { Link } from "wouter";
 import { CLIENT_INFO, CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES, LOCATION_PAGES } from "@/lib/routes";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
+import { useLocationSettings } from "@/contexts/LocationContext";
 
 export default function Footer() {
+  const { currentLocation } = useLocationSettings();
+
   return (
     <footer className="bg-[#050505] border-t border-white/5 pt-16 pb-8">
       <div className="container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -41,33 +44,19 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
-            <li className="pt-2 border-t border-white/5">
-              <Link href="/dui-defense">
-                <span className="hover:text-primary transition-colors cursor-pointer">DUI Defense Hub</span>
-              </Link>
-            </li>
-            {DUI_DEFENSE_SUBPAGES.slice(0, 3).map((p) => (
-              <li key={p.slug}>
-                <Link href={`/dui-defense/${p.slug}`}>
-                  <span className="hover:text-primary transition-colors cursor-pointer">{p.title}</span>
-                </Link>
-              </li>
-            ))}
           </ul>
         </div>
 
-        {/* Location Pages */}
+        {/* Locations */}
         <div>
           <h4 className="font-serif text-base font-semibold text-primary mb-4 tracking-wide">
-            Service Areas
+            Our Service Locations
           </h4>
           <ul className="space-y-2 text-xs text-muted-foreground font-sans">
             {LOCATION_PAGES.map((loc) => (
               <li key={loc.slug}>
                 <Link href={`/${loc.slug}`}>
-                  <span className="hover:text-primary transition-colors cursor-pointer">
-                    Attorney in {loc.name}
-                  </span>
+                  <span className="hover:text-primary transition-colors cursor-pointer">{loc.name}</span>
                 </Link>
               </li>
             ))}
@@ -83,13 +72,13 @@ export default function Footer() {
             <MapPin className="w-4 h-4 text-primary shrink-0 mt-0.5" />
             <div>
               <p className="font-medium text-foreground">Ryan Law LLC</p>
-              <p>{CLIENT_INFO.address}</p>
+              <p>{currentLocation.address}</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <Phone className="w-4 h-4 text-primary shrink-0" />
-            <a href={CLIENT_INFO.phoneRaw} className="hover:text-primary transition-colors">
-              {CLIENT_INFO.phone}
+            <a href={currentLocation.phoneRaw} className="hover:text-primary transition-colors">
+              {currentLocation.phone}
             </a>
           </div>
           <div className="flex items-center gap-3">
@@ -108,14 +97,16 @@ export default function Footer() {
       {/* Footer Bottom */}
       <div className="container border-t border-white/5 pt-8 text-[11px] text-muted-foreground font-sans flex flex-col gap-6">
         {/* Legal Disclaimer */}
-        <p className="leading-relaxed text-justify">
-          <strong>Disclaimer & Attorney Advertising:</strong> The information contained on this website is for general informational purposes only and does not constitute formal legal advice. Submission of our contact form or calling our office does not establish an attorney-client relationship. Please do not send confidential case details until a formal written agreement has been executed with James Ryan of Ryan Law LLC. Past results do not guarantee future outcomes.
-        </p>
+        <div className="leading-relaxed border-b border-white/5 pb-6 text-justify">
+          <p className="font-semibold text-foreground mb-1">Disclaimer & Attorney-Client Privilege:</p>
+          <p>
+            The legal information presented on this website, including criminal defense guidelines, DUI penalties, and Maryland courtroom procedures, is provided for general educational and informational purposes only. It does not constitute formal legal advice, and accessing this information does not establish an attorney-client relationship. Under Maryland and DC professional rules, a binding attorney-client relationship with Ryan Law LLC is only created upon the execution of a written, signed retainer agreement.
+          </p>
+        </div>
 
-        {/* Links and Copyright */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-white/5 pt-6">
-          <p>© 2026 Ryan Law LLC. All Rights Reserved. Designed by Manus.</p>
-          <div className="flex items-center gap-6">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p>© {new Date().getFullYear()} Ryan Law LLC. All rights reserved.</p>
+          <div className="flex gap-6">
             <Link href="/disclaimer">
               <span className="hover:text-primary transition-colors cursor-pointer">Disclaimer</span>
             </Link>

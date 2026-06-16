@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, ShieldCheck, Clock } from "lucide-react";
 import { CLIENT_INFO } from "@/lib/routes";
+import { useLocationSettings } from "@/contexts/LocationContext";
 
 export default function ContactForm() {
+  const { currentLocation } = useLocationSettings();
+
   return (
     <div className="bg-card border border-white/5 rounded-sm p-8 md:p-12 shadow-2xl relative overflow-hidden text-center flex flex-col items-center max-w-3xl mx-auto">
       {/* Accent subtle background glow */}
@@ -31,11 +34,11 @@ export default function ContactForm() {
         </a>
 
         <a
-          href={CLIENT_INFO.phoneRaw}
+          href={currentLocation.phoneRaw}
           className="flex-1 inline-flex items-center justify-center gap-2.5 bg-transparent hover:bg-white/5 text-foreground border border-white/10 font-sans font-bold text-sm py-4 px-8 rounded-sm transition-all active:scale-[0.98]"
         >
           <Phone className="w-4 h-4" />
-          <span>Call: {CLIENT_INFO.phone}</span>
+          <span>Call: {currentLocation.phone}</span>
         </a>
       </div>
 

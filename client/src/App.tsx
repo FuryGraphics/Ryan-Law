@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { LocationProvider } from "./contexts/LocationContext";
 
 // Page Imports
 import Home from "./pages/Home";
@@ -23,6 +24,12 @@ function Router() {
     <Switch>
       {/* Core Pages */}
       <Route path="/" component={Home} />
+      
+      {/* Location-Specific Homepage Routes */}
+      <Route path="/bel-air" component={Home} />
+      <Route path="/towson" component={Home} />
+      <Route path="/dc" component={Home} />
+
       <Route path="/attorney" component={Attorney} />
       <Route path="/practice-areas" component={PracticeAreas} />
       <Route path="/testimonials" component={Testimonials} />
@@ -82,10 +89,12 @@ function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider defaultTheme="dark">
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
+        <LocationProvider>
+          <TooltipProvider>
+            <Toaster />
+            <Router />
+          </TooltipProvider>
+        </LocationProvider>
       </ThemeProvider>
     </ErrorBoundary>
   );
