@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import { LocationProvider } from "./contexts/LocationContext";
 
 // Page Imports
+import Portal from "./pages/Portal";
 import Home from "./pages/Home";
 import Attorney from "./pages/Attorney";
 import PracticeAreas from "./pages/PracticeAreas";
@@ -22,14 +23,15 @@ import { Disclaimer, PrivacyPolicy, SitemapPage } from "./pages/Utilities";
 function Router() {
   return (
     <Switch>
-      {/* Core Pages */}
-      <Route path="/" component={Home} />
+      {/* Root Gateway / Portal Selection Page */}
+      <Route path="/" component={Portal} />
       
       {/* Location-Specific Homepage Routes */}
       <Route path="/bel-air" component={Home} />
       <Route path="/towson" component={Home} />
       <Route path="/dc" component={Home} />
 
+      {/* Core Inner Pages */}
       <Route path="/attorney" component={Attorney} />
       <Route path="/practice-areas" component={PracticeAreas} />
       <Route path="/testimonials" component={Testimonials} />
@@ -57,7 +59,7 @@ function Router() {
         {(params) => <PracticeAreaSub parentType="dui-defense" subSlug={params.subSlug} />}
       </Route>
 
-      {/* Location Pages */}
+      {/* Location Landing Pages */}
       <Route path="/bel-air-md">
         <Location slug="bel-air-md" />
       </Route>

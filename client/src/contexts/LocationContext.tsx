@@ -1,6 +1,6 @@
 import { createContext, useContext, ReactNode, useEffect, useState } from "react";
 import { useLocation } from "wouter";
-import { LOCATION_CONFIGS, CLIENT_INFO } from "@/lib/routes";
+import { LOCATION_CONFIGS } from "@/lib/routes";
 
 export interface LocationConfig {
   name: string;
@@ -23,14 +23,25 @@ export function LocationProvider({ children }: { children: ReactNode }) {
   const [locationKey, setLocationKey] = useState<"bel-air" | "towson" | "dc">("bel-air");
 
   useEffect(() => {
-    // Detect location from route path
+    // 1. Detect location from explicit route path
     if (wLocation.startsWith("/dc") || wLocation.startsWith("/washington-dc")) {
       setLocationKey("dc");
+      sessionStorage.setItem("ryan_law_location_pref", "dc");
     } else if (wLocation.startsWith("/towson") || wLocation.startsWith("/baltimore-county")) {
       setLocationKey("towson");
-    } else {
-      // Default is Bel Air / Harford / Cecil
+      sessionStorage.setItem("ryan_law_location_pref", "towson");
+    } else if (wLocation.startsWith("/bel-air") || wLocation.startsWith("/harford-county") || wLocation.startsWith("/cecil-county")) {
       setLocationKey("bel-air");
+      sessionStorage.setItem("ryan_law_location_pref", "bel-air");
+    } else {
+      // 2. Fallback to sessionStorage if browsing other subpages (like /attorney, /blog)
+      const storedPref = sessionStorage.getItem("ryan_law_location_pref") as "bel-air" | "towson" | "dc" | null;
+      if (storedPref && ["bel-air", "towson", "dc"].includes(storedPref)) {
+        setLocationKey(storedPref);
+      } else {
+        // Default fallback is Bel Air
+        setLocationKey("bel-air");
+      }
     }
   }, [wLocation]);
 
