@@ -66,11 +66,11 @@ export default function Navigation() {
       <div className="container flex items-center justify-between">
         {/* Logo */}
         <Link href="/">
-          <div className="flex flex-col cursor-pointer group">
-            <span className="font-serif text-xl md:text-2xl font-bold tracking-wider text-primary group-hover:text-primary/90 transition-colors">
+          <div className="flex flex-col cursor-pointer group shrink-0">
+            <span className="font-serif text-lg xs:text-xl md:text-2xl font-bold tracking-wider text-primary group-hover:text-primary/90 transition-colors whitespace-nowrap">
               RYAN LAW
             </span>
-            <span className="text-[9px] tracking-[0.3em] uppercase text-muted-foreground -mt-1 font-sans">
+            <span className="text-[8px] xs:text-[9px] tracking-[0.25em] uppercase text-muted-foreground -mt-1 font-sans whitespace-nowrap">
               LLC • CRIMINAL & DUI DEFENSE
             </span>
           </div>
@@ -141,18 +141,18 @@ export default function Navigation() {
         </nav>
 
         {/* Call CTA Button & Mobile Toggle */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <a
             href={currentLocation.phoneRaw}
-            className="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-semibold text-sm py-2.5 px-5 rounded-sm transition-all shadow-md active:scale-[0.97]"
+            className="hidden xs:flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-semibold text-xs sm:text-sm py-2 px-3 sm:px-5 rounded-sm transition-all shadow-md active:scale-[0.97] whitespace-nowrap"
           >
-            <Phone className="w-4 h-4" />
-            <span>Call Now — {currentLocation.phone}</span>
+            <Phone className="w-3.5 h-3.5" />
+            <span>Call — {currentLocation.phone}</span>
           </a>
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 text-foreground/80 hover:text-primary transition-colors"
+            className="p-2 text-foreground/80 hover:text-primary transition-colors"
             aria-label="Toggle Menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

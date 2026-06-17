@@ -147,17 +147,17 @@ export default function Home() {
 
         <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           {/* Hero Left Content */}
-          <div className="lg:col-span-7 flex flex-col gap-8 items-start text-left">
+          <div className="lg:col-span-7 flex flex-col gap-8 items-start text-left w-full">
             <motion.div
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
-              className="flex flex-col gap-4 items-start"
+              className="flex flex-col gap-4 items-start w-full"
             >
-              <span className="text-primary font-sans text-xs font-bold tracking-[0.3em] uppercase">
+              <span className="text-primary font-sans text-xs font-bold tracking-[0.3em] uppercase text-left">
                 Aggressive Courtroom Advocacy
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-foreground leading-[1.1] text-left">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-foreground leading-[1.15] sm:leading-[1.1] text-left w-full">
                 Criminal Defense & DUI Attorney Serving{" "}
                 <span className="text-primary">{currentLocation.city}</span> and Surrounding Counties
               </h1>
@@ -169,7 +169,7 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
-              className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl font-sans font-light text-left"
+              className="text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl font-sans font-light text-left w-full"
             >
               When your freedom, reputation, and livelihood are on the line, you cannot afford to leave your defense to chance. Attorney James Ryan provides relentless, strategic, and highly personalized defense representation in {currentLocation.name}.
             </motion.p>
@@ -182,13 +182,13 @@ export default function Home() {
             >
               <a
                 href={currentLocation.phoneRaw}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-bold text-base py-4 px-8 rounded-sm transition-all shadow-lg text-center flex items-center justify-center gap-2 active:scale-[0.98]"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-bold text-sm sm:text-base py-3.5 sm:py-4 px-6 sm:px-8 rounded-sm transition-all shadow-lg text-center flex items-center justify-center gap-2 active:scale-[0.98] w-full sm:w-auto"
               >
-                <Phone className="w-5 h-5 fill-current" />
+                <Phone className="w-4 h-4 sm:w-5 sm:h-5 fill-current" />
                 <span>Call Now — {currentLocation.phone}</span>
               </a>
-              <Link href="/contact">
-                <span className="border border-white/20 hover:border-primary hover:bg-primary/5 text-foreground font-sans font-medium text-base py-4 px-8 rounded-sm transition-all text-center cursor-pointer block">
+              <Link href="/contact" className="w-full sm:w-auto">
+                <span className="border border-white/20 hover:border-primary hover:bg-primary/5 text-foreground font-sans font-medium text-sm sm:text-base py-3.5 sm:py-4 px-6 sm:px-8 rounded-sm transition-all text-center cursor-pointer block w-full">
                   Free Case Evaluation
                 </span>
               </Link>
@@ -209,8 +209,8 @@ export default function Home() {
                 className="w-full h-auto grayscale brightness-90 contrast-105 rounded-sm"
               />
               <div className="absolute bottom-6 left-6 right-6 bg-background/90 backdrop-blur-md border border-white/10 p-4 rounded-sm text-left">
-                <p className="font-serif text-lg font-bold text-primary text-left">{CLIENT_INFO.attorney}</p>
-                <p className="text-[10px] tracking-widest uppercase text-muted-foreground font-sans text-left">
+                <p className="font-serif text-base sm:text-lg font-bold text-primary text-left">{CLIENT_INFO.attorney}</p>
+                <p className="text-[9px] sm:text-[10px] tracking-widest uppercase text-muted-foreground font-sans text-left">
                   Lead Defense Counsel • Ryan Law LLC
                 </p>
               </div>
