@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "vite build",
+  "outputDirectory": "dist/public",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/((?!assets/|images/|.*\\.[a-zA-Z0-9]+$).*)", "destination": "/index.html" }
+  ]
+}
