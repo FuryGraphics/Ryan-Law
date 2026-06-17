@@ -133,7 +133,7 @@ export default function Home() {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen pt-32 pb-20 flex items-center overflow-hidden">
+      <section className="relative py-24 md:py-32 flex items-center overflow-hidden border-b border-white/5">
         {/* Abstract Background with subtle glow */}
         <div className="absolute inset-0 z-0">
           <img
@@ -145,19 +145,19 @@ export default function Home() {
           <div className="absolute top-1/4 right-1/4 w-96 h-90 bg-primary/5 rounded-full blur-[120px]" />
         </div>
 
-        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="container relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           {/* Hero Left Content */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
+          <div className="lg:col-span-7 flex flex-col gap-8 items-start text-left">
             <motion.div
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
-              className="flex flex-col gap-4"
+              className="flex flex-col gap-4 items-start"
             >
               <span className="text-primary font-sans text-xs font-bold tracking-[0.3em] uppercase">
                 Aggressive Courtroom Advocacy
               </span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-foreground leading-[1.1]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold tracking-tight text-foreground leading-[1.1] text-left">
                 Criminal Defense & DUI Attorney Serving{" "}
                 <span className="text-primary">{currentLocation.city}</span> and Surrounding Counties
               </h1>
@@ -169,7 +169,7 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
-              className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl font-sans font-light"
+              className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl font-sans font-light text-left"
             >
               When your freedom, reputation, and livelihood are on the line, you cannot afford to leave your defense to chance. Attorney James Ryan provides relentless, strategic, and highly personalized defense representation in {currentLocation.name}.
             </motion.p>
@@ -178,7 +178,7 @@ export default function Home() {
               initial="hidden"
               animate="visible"
               variants={fadeInUp}
-              className="flex flex-col sm:flex-row gap-4 pt-4"
+              className="flex flex-col sm:flex-row gap-4 pt-2 w-full sm:w-auto"
             >
               <a
                 href={currentLocation.phoneRaw}
@@ -196,7 +196,7 @@ export default function Home() {
           </div>
 
           {/* Hero Right: Portrait Silhouette */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
+          <div className="lg:col-span-5 flex justify-center lg:justify-end relative w-full">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -208,9 +208,9 @@ export default function Home() {
                 alt="James Ryan Attorney Silhouette"
                 className="w-full h-auto grayscale brightness-90 contrast-105 rounded-sm"
               />
-              <div className="absolute bottom-6 left-6 right-6 bg-background/90 backdrop-blur-md border border-white/10 p-4 rounded-sm">
-                <p className="font-serif text-lg font-bold text-primary">{CLIENT_INFO.attorney}</p>
-                <p className="text-[10px] tracking-widest uppercase text-muted-foreground font-sans">
+              <div className="absolute bottom-6 left-6 right-6 bg-background/90 backdrop-blur-md border border-white/10 p-4 rounded-sm text-left">
+                <p className="font-serif text-lg font-bold text-primary text-left">{CLIENT_INFO.attorney}</p>
+                <p className="text-[10px] tracking-widest uppercase text-muted-foreground font-sans text-left">
                   Lead Defense Counsel • Ryan Law LLC
                 </p>
               </div>
@@ -220,7 +220,7 @@ export default function Home() {
       </section>
 
       {/* Embedded Contact Form Section */}
-      <section className="py-12 bg-gradient-to-b from-background to-[#050505] relative z-20">
+      <section className="py-24 bg-gradient-to-b from-background to-[#050505] relative z-20 border-b border-white/5">
         <div className="container max-w-4xl">
           <motion.div
             initial="hidden"
@@ -234,7 +234,7 @@ export default function Home() {
       </section>
 
       {/* Trust Signals Bar */}
-      <section className="py-16 bg-[#050505] border-y border-white/5 relative z-10">
+      <section className="py-20 bg-[#050505] border-b border-white/5 relative z-10">
         <div className="container">
           <motion.div
             initial="hidden"
@@ -252,10 +252,10 @@ export default function Home() {
                 <div className="p-3 bg-card border border-white/5 rounded-sm group-hover:border-primary/30 transition-colors duration-300">
                   <sig.icon className="w-5 h-5 text-primary" />
                 </div>
-                <h4 className="font-serif text-sm font-semibold text-foreground tracking-wide">
+                <h4 className="font-serif text-sm font-semibold text-foreground tracking-wide text-center">
                   {sig.title}
                 </h4>
-                <p className="text-[11px] text-muted-foreground font-sans leading-relaxed">
+                <p className="text-[11px] text-muted-foreground font-sans leading-relaxed text-center">
                   {sig.desc}
                 </p>
               </motion.div>
@@ -265,15 +265,15 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-24 bg-background relative overflow-hidden">
+      <section className="py-24 bg-background relative overflow-hidden border-b border-white/5">
         <div className="container grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-5 flex justify-center lg:justify-start w-full">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
-              className="relative border border-white/5 p-4 bg-card"
+              className="relative border border-white/5 p-4 bg-card max-w-sm w-full"
             >
               <img
                 src={CLIENT_INFO.images.portrait}
@@ -286,18 +286,18 @@ export default function Home() {
             </motion.div>
           </div>
 
-          <div className="lg:col-span-7 flex flex-col gap-6">
+          <div className="lg:col-span-7 flex flex-col gap-6 items-start text-left">
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
-              className="flex flex-col gap-3"
+              className="flex flex-col gap-3 items-start"
             >
               <span className="text-primary font-sans text-xs font-bold tracking-[0.3em] uppercase">
                 MEET JAMES RYAN
               </span>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground text-left">
                 Relentless Legal Defense Built Around Your Case
               </h2>
               <div className="w-16 h-1 bg-primary" />
@@ -308,12 +308,12 @@ export default function Home() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={fadeInUp}
-              className="text-sm md:text-base text-muted-foreground leading-relaxed font-sans font-light flex flex-col gap-4"
+              className="text-sm md:text-base text-muted-foreground leading-relaxed font-sans font-light flex flex-col gap-4 text-left"
             >
-              <p>
+              <p className="text-left">
                 James Ryan, the founder of Ryan Law LLC, is an aggressive, dedicated criminal defense attorney serving {currentLocation.city} and surrounding jurisdictions. He represents clients facing a broad spectrum of state and federal criminal charges, ranging from serious felonies and complex drug conspiracies to DUI defense and high-stakes traffic violations.
               </p>
-              <p>
+              <p className="text-left">
                 Unlike massive, assembly-line firms where cases are passed down to paralegals or junior associates, James Ryan handles every file personally. He believes that a successful defense starts with direct, open communication. When you call Ryan Law LLC, you speak directly to your attorney. We analyze every piece of evidence, challenge procedural violations, and fight tirelessly for dismissals, reduced charges, or complete acquittals in {currentLocation.name} courts.
               </p>
             </motion.div>
@@ -337,13 +337,13 @@ export default function Home() {
       </section>
 
       {/* Practice Areas Grid */}
-      <section className="py-24 bg-[#050505] border-t border-white/5 relative">
-        <div className="container flex flex-col gap-12">
+      <section className="py-24 bg-[#050505] border-b border-white/5 relative">
+        <div className="container flex flex-col gap-16">
           <div className="text-center flex flex-col items-center gap-3">
             <span className="text-primary font-sans text-xs font-bold tracking-[0.3em] uppercase">
               OUR LEGAL EXPERTISE
             </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground text-center">
               How We Protect Your Freedom
             </h2>
             <div className="w-16 h-1 bg-primary" />
@@ -360,24 +360,24 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                className="bg-card border border-white/5 p-8 rounded-sm hover:border-primary/20 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+                className="bg-card border border-white/5 p-8 rounded-sm hover:border-primary/20 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden text-left"
               >
                 {/* Accent corner border */}
                 <div className="absolute top-0 right-0 w-12 h-12 border-t-2 border-r-2 border-transparent group-hover:border-primary/20 transition-all duration-300" />
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 items-start text-left">
                   <div className="p-4 bg-background border border-white/5 rounded-sm w-fit group-hover:border-primary/30 transition-colors duration-300">
                     <area.icon className="w-6 h-6 text-primary" />
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                  <h3 className="font-serif text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300 text-left">
                     {area.title}
                   </h3>
-                  <p className="text-xs md:text-sm text-muted-foreground font-sans leading-relaxed">
+                  <p className="text-xs md:text-sm text-muted-foreground font-sans leading-relaxed text-left">
                     {area.desc}
                   </p>
                 </div>
 
-                <div className="pt-6 border-t border-white/5 mt-6">
+                <div className="pt-6 border-t border-white/5 mt-6 text-left">
                   <Link href={area.href}>
                     <span className="inline-flex items-center gap-1.5 text-xs text-primary font-medium hover:underline cursor-pointer">
                       <span>Explore Defense Services</span>
@@ -392,13 +392,13 @@ export default function Home() {
       </section>
 
       {/* Reviews Section */}
-      <section className="py-24 bg-background border-t border-white/5 relative">
-        <div className="container flex flex-col gap-12">
+      <section className="py-24 bg-background border-b border-white/5 relative">
+        <div className="container flex flex-col gap-16">
           <div className="text-center flex flex-col items-center gap-3">
             <span className="text-primary font-sans text-xs font-bold tracking-[0.3em] uppercase">
               CLIENT TESTIMONIALS
             </span>
-            <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold tracking-tight text-foreground text-center">
               What Our Clients Say
             </h2>
             <div className="w-16 h-1 bg-primary" />
@@ -415,22 +415,22 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={fadeInUp}
-                className="bg-card border border-white/5 p-6 rounded-sm flex flex-col justify-between relative"
+                className="bg-card border border-white/5 p-8 rounded-sm flex flex-col justify-between relative text-left"
               >
-                <Quote className="absolute top-6 right-6 w-8 h-8 text-primary/10" />
-                <div className="flex flex-col gap-4">
+                <Quote className="absolute top-8 right-8 w-8 h-8 text-primary/10" />
+                <div className="flex flex-col gap-4 items-start text-left">
                   <div className="flex gap-1">
                     {[...Array(rev.stars)].map((_, idx) => (
                       <Star key={idx} className="w-4 h-4 text-primary fill-primary" />
                     ))}
                   </div>
-                  <p className="text-xs md:text-sm text-muted-foreground font-sans leading-relaxed italic">
+                  <p className="text-xs md:text-sm text-muted-foreground font-sans leading-relaxed italic text-left">
                     "{rev.quote}"
                   </p>
                 </div>
-                <div className="pt-4 border-t border-white/5 mt-6 flex flex-col">
-                  <span className="font-serif text-sm font-bold text-foreground">{rev.author}</span>
-                  <span className="text-[10px] text-muted-foreground font-sans uppercase tracking-wider mt-0.5">
+                <div className="pt-4 border-t border-white/5 mt-6 flex flex-col items-start text-left">
+                  <span className="font-serif text-sm font-bold text-foreground text-left">{rev.author}</span>
+                  <span className="text-[10px] text-muted-foreground font-sans uppercase tracking-wider mt-0.5 text-left">
                     {rev.location} Client
                   </span>
                 </div>
@@ -438,7 +438,7 @@ export default function Home() {
             ))}
           </motion.div>
 
-          <div className="text-center mt-4">
+          <div className="text-center">
             <Link href="/testimonials">
               <span className="text-xs text-primary font-medium hover:underline cursor-pointer">
                 View All Client Testimonials & Case Results →
@@ -449,7 +449,7 @@ export default function Home() {
       </section>
 
       {/* CTA Banner */}
-      <section className="py-20 bg-primary text-primary-foreground relative overflow-hidden">
+      <section className="py-24 bg-primary text-primary-foreground relative overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-black/10 rounded-full blur-3xl pointer-events-none" />
