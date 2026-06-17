@@ -6,7 +6,6 @@ import FloatingCallButton from "@/components/FloatingCallButton";
 import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
 import { CLIENT_INFO, CORE_PAGES } from "@/lib/routes";
-import { Button } from "@/components/ui/button";
 import { useLocationSettings } from "@/contexts/LocationContext";
 import {
   Phone,
@@ -14,16 +13,15 @@ import {
   Scale,
   Award,
   Calendar,
-  CheckCircle,
   ChevronRight,
   Gavel,
-  Briefcase,
   MapPin,
   Star,
   Quote
 } from "lucide-react";
 
 export default function Home() {
+
   const { currentLocation, locationKey } = useLocationSettings();
   const pageInfo = CORE_PAGES.home;
 

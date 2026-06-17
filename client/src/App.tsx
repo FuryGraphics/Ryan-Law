@@ -19,8 +19,9 @@ import BlogPost from "./pages/BlogPost";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
 import { Disclaimer, PrivacyPolicy, SitemapPage } from "./pages/Utilities";
-
+import FileManager from "./pages/FileManager";
 function Router() {
+  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       {/* Root Gateway / Portal Selection Page */}
@@ -75,6 +76,9 @@ function Router() {
       <Route path="/washington-dc">
         <Location slug="washington-dc" />
       </Route>
+
+      {/* File Manager */}
+      <Route path="/files" component={FileManager} />
 
       {/* Blog Posts */}
       <Route path="/blog/:slug">
