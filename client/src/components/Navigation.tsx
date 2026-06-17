@@ -106,7 +106,8 @@ export default function Navigation() {
 
               {/* Dropdown Menu */}
               {link.dropdown && activeDropdown === link.name && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-card border border-white/5 p-6 rounded-sm shadow-2xl mt-2 grid grid-cols-2 gap-8 animate-in fade-in slide-in-from-top-2 duration-200">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50">
+                <div className="w-[600px] bg-card border border-white/5 p-6 rounded-sm shadow-2xl grid grid-cols-2 gap-8 animate-in fade-in slide-in-from-top-2 duration-200">
                   {link.dropdown.map((section) => (
                     <div key={section.title} className="flex flex-col gap-4">
                       <Link href={section.href}>
@@ -134,6 +135,7 @@ export default function Navigation() {
                       </ul>
                     </div>
                   ))}
+                </div>
                 </div>
               )}
             </div>
