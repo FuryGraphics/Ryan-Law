@@ -27,7 +27,7 @@ export function LocationProvider({ children }: { children: ReactNode }) {
     if (wLocation.startsWith("/dc") || wLocation.startsWith("/washington-dc")) {
       setLocationKey("dc");
       sessionStorage.setItem("ryan_law_location_pref", "dc");
-    } else if (wLocation.startsWith("/towson") || wLocation.startsWith("/baltimore-county")) {
+    } else if (wLocation.startsWith("/towson")) {
       setLocationKey("towson");
       sessionStorage.setItem("ryan_law_location_pref", "towson");
     } else if (wLocation.startsWith("/bel-air") || wLocation.startsWith("/harford-county") || wLocation.startsWith("/cecil-county")) {

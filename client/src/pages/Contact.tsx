@@ -11,6 +11,24 @@ import { MapView } from "@/components/Map";
 export default function Contact() {
   const pageInfo = CORE_PAGES.contact;
 
+  const offices = [
+    {
+      name: "Bel Air Office",
+      address: "16a Bel Air South Pkwy, Bel Air, MD 21015",
+      areas: "Serving Harford County & Cecil County"
+    },
+    {
+      name: "Towson Office",
+      address: "16a Bel Air South Pkwy, Bel Air, MD 21015",
+      areas: "Serving Baltimore County, Anne Arundel County, Prince George's County & Howard County"
+    },
+    {
+      name: "Washington, D.C. Office",
+      address: "1240 3rd St NE, Unit 743, Washington, D.C. 20002",
+      areas: "Serving Washington, D.C."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col">
       <SEO
@@ -57,13 +75,16 @@ export default function Contact() {
             </div>
 
             <div className="flex flex-col gap-4 font-sans text-sm text-muted-foreground">
-              <div className="flex items-start gap-3 bg-card p-5 border border-white/5 rounded-sm">
-                <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <p className="font-serif text-base font-semibold text-foreground mb-1">Office Address</p>
-                  <p className="text-xs leading-relaxed">{CLIENT_INFO.address}</p>
+              {offices.map((office) => (
+                <div key={office.name} className="flex items-start gap-3 bg-card p-5 border border-white/5 rounded-sm">
+                  <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                  <div>
+                    <p className="font-serif text-base font-semibold text-foreground mb-1">{office.name}</p>
+                    <p className="text-xs leading-relaxed">{office.address}</p>
+                    <p className="text-[11px] text-primary/80 leading-relaxed mt-1">{office.areas}</p>
+                  </div>
                 </div>
-              </div>
+              ))}
 
               <div className="flex items-start gap-3 bg-card p-5 border border-white/5 rounded-sm">
                 <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
@@ -98,7 +119,7 @@ export default function Contact() {
             <div className="bg-primary/5 border border-primary/10 p-6 rounded-sm flex items-start gap-3">
               <ShieldCheck className="w-5 h-5 text-primary shrink-0 mt-0.5" />
               <p className="text-[11px] text-muted-foreground font-sans leading-relaxed">
-                <strong>Local SEO & Map Note:</strong> Ryan Law LLC operates multiple Google Business Profiles to support clients across Harford/Cecil County, Baltimore County, and Washington DC. Our primary local listing and physical office is based in Bel Air, MD.
+                <strong>Please Note:</strong> Our Maryland offices are not permanently staffed. Ryan Law LLC rents office space at these locations as needed to meet with clients. The mailing address for both the Bel Air and Towson offices is 16a Bel Air South Pkwy, Bel Air, MD 21015. The Washington, D.C. office address is 1240 3rd St NE, Unit 743, Washington, D.C. 20002. Please call ahead to schedule an appointment.
               </p>
             </div>
           </div>

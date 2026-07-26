@@ -70,8 +70,14 @@ function Router() {
       <Route path="/cecil-county">
         <Location slug="cecil-county" />
       </Route>
-      <Route path="/baltimore-county">
-        <Location slug="baltimore-county" />
+      <Route path="/anne-arundel-county">
+        <Location slug="anne-arundel-county" />
+      </Route>
+      <Route path="/prince-georges-county">
+        <Location slug="prince-georges-county" />
+      </Route>
+      <Route path="/howard-county">
+        <Location slug="howard-county" />
       </Route>
       <Route path="/washington-dc">
         <Location slug="washington-dc" />

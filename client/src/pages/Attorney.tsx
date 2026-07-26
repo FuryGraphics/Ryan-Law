@@ -12,9 +12,9 @@ export default function Attorney() {
   const pageInfo = CORE_PAGES.attorney;
 
   const credentials = [
-    { icon: GraduationCap, title: "Education", items: ["University of Maryland School of Law, J.D.", "University of Maryland, College Park, B.A."] },
-    { icon: Scale, title: "Bar Admissions", items: ["State of Maryland", "District of Columbia", "U.S. District Court for the District of Maryland"] },
-    { icon: Award, title: "Professional Affiliations", items: ["Maryland State Bar Association (MSBA)", "Maryland Criminal Defense Attorneys' Association (MCDAA)", "Harford County Bar Association"] }
+    { icon: GraduationCap, title: "Education", items: ["University of Maryland School of Law, J.D.", "Saint Joseph's University, M.B.A.", "University of Maryland University College, B.A."] },
+    { icon: Scale, title: "Bar Admissions", items: ["State of Maryland", "District of Columbia", "U.S. District Court for the District of Maryland", "United States Supreme Court"] },
+    { icon: Award, title: "Professional Affiliations", items: ["Maryland State Bar Association (MSBA)", "Maryland Criminal Defense Attorneys' Association (MCDAA)", "Harford County Bar Association", "Washington, D.C. Superior Court Trial Lawyers Association"] }
   ];
 
   const coreValues = [
@@ -100,7 +100,7 @@ export default function Attorney() {
 
             <div className="text-sm md:text-base text-muted-foreground leading-relaxed font-sans font-light flex flex-col gap-6">
               <p>
-                For over a decade, James Ryan has defended individuals facing serious criminal charges in Maryland and Washington DC. His practice is focused entirely on criminal defense and DUI litigation, giving him deep familiarity with local courtrooms, judges, and prosecutors.
+                James Ryan has defended individuals facing serious criminal charges in Maryland and Washington DC. His practice is focused entirely on criminal defense and DUI litigation, giving him deep familiarity with local courtrooms, judges, and prosecutors.
               </p>
               <p>
                 James founded Ryan Law LLC with a clear mission: to provide elite, aggressive, and highly personalized legal representation. He believes that every client deserves an attorney who is fully committed, highly responsive, and prepared to fight in the courtroom.

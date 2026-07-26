@@ -102,7 +102,9 @@
   <url><loc>https://www.ryanlaw.us/bel-air-md</loc><priority>0.7</priority></url>
   <url><loc>https://www.ryanlaw.us/harford-county</loc><priority>0.7</priority></url>
   <url><loc>https://www.ryanlaw.us/cecil-county</loc><priority>0.7</priority></url>
-  <url><loc>https://www.ryanlaw.us/baltimore-county</loc><priority>0.7</priority></url>
+  <url><loc>https://www.ryanlaw.us/anne-arundel-county</loc><priority>0.7</priority></url>
+  <url><loc>https://www.ryanlaw.us/prince-georges-county</loc><priority>0.7</priority></url>
+  <url><loc>https://www.ryanlaw.us/howard-county</loc><priority>0.7</priority></url>
   <url><loc>https://www.ryanlaw.us/washington-dc</loc><priority>0.7</priority></url>
 
   <!-- Blog Posts -->

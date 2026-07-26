@@ -75,7 +75,6 @@ export default function Home() {
     { name: "Bel Air, MD", slug: "bel-air-md" },
     { name: "Harford County", slug: "harford-county" },
     { name: "Cecil County", slug: "cecil-county" },
-    { name: "Baltimore County", slug: "baltimore-county" },
     { name: "Washington DC", slug: "washington-dc" }
   ];
 
@@ -159,6 +158,11 @@ export default function Home() {
                 Criminal Defense & DUI Attorney Serving{" "}
                 <span className="text-primary">{currentLocation.city}</span> and Surrounding Counties
               </h1>
+              {locationKey === "towson" && (
+                <p className="text-base md:text-lg lg:text-xl text-primary font-serif italic text-left">
+                  Serving Baltimore, Anne Arundel, Prince George's & Howard County
+                </p>
+              )}
               {/* Gold Accent Line */}
               <div className="w-24 h-1 bg-primary mt-2" />
             </motion.div>
@@ -216,6 +220,46 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Towson-Area Counties Served */}
+      {locationKey === "towson" && (
+        <section className="py-20 bg-[#050505] border-b border-white/5 relative z-10">
+          <div className="container flex flex-col gap-10">
+            <div className="text-center flex flex-col items-center gap-3">
+              <span className="text-primary font-sans text-xs font-bold tracking-[0.3em] uppercase">
+                From Our Towson Office
+              </span>
+              <h2 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
+                Serving the Counties Around Towson
+              </h2>
+              <div className="w-16 h-1 bg-primary" />
+              <p className="text-xs md:text-sm text-muted-foreground leading-relaxed font-sans font-light max-w-2xl">
+                From his Towson office, attorney James Ryan defends clients facing criminal and DUI charges throughout Baltimore County and the surrounding jurisdictions of Anne Arundel, Prince George's, and Howard County.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto w-full">
+              {[
+                { name: "Anne Arundel County", slug: "anne-arundel-county" },
+                { name: "Prince George's County", slug: "prince-georges-county" },
+                { name: "Howard County", slug: "howard-county" }
+              ].map((county) => (
+                <Link key={county.slug} href={`/${county.slug}`}>
+                  <div className="bg-card border border-white/5 p-6 rounded-sm hover:border-primary/30 transition-all duration-300 flex items-center justify-between gap-3 cursor-pointer group h-full">
+                    <div className="flex items-center gap-3">
+                      <MapPin className="w-5 h-5 text-primary shrink-0" />
+                      <span className="font-serif text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {county.name}
+                      </span>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-primary shrink-0" />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Embedded Contact Form Section */}
       <section className="py-24 bg-gradient-to-b from-background to-[#050505] relative z-20 border-b border-white/5">

@@ -38,7 +38,7 @@ export const LOCATION_CONFIGS = {
     city: "Towson, MD",
     phone: "(443) 348-0434",
     phoneRaw: "tel:+14433480434",
-    address: "Towson, MD (By Appointment Only)",
+    address: "16a Bel Air South Pkwy, Bel Air, MD 21015",
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49286.32135687353!2d-76.63581535!3d39.39243555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c80ea2999e0337%3A0x7e8b9195b22f03f7!2sTowson%2C%20MD!5e0!3m2!1sen!2sus!4v1717320000000!5m2!1sen!2sus"
   },
   "dc": {
@@ -46,7 +46,7 @@ export const LOCATION_CONFIGS = {
     city: "Washington, DC",
     phone: "(202) 519-1935",
     phoneRaw: "tel:+12025191935",
-    address: "Washington, DC (By Appointment Only)",
+    address: "1240 3rd St NE, Unit 743, Washington, DC 20002",
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12420.211438965825!2d-77.0368707!3d38.9071923!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b7bcdecbb76f%3A0x12ec7226124911e7!2sWashington%2C%20DC!5e0!3m2!1sen!2sus!4v1717320000000!5m2!1sen!2sus"
   }
 };
@@ -151,7 +151,9 @@ export const LOCATION_PAGES = [
   { slug: "bel-air-md", name: "Bel Air, MD", title: "Criminal Defense & DUI Attorney Bel Air, MD", courthouse: "Harford County District & Circuit Courthouses (Bel Air, MD)" },
   { slug: "harford-county", name: "Harford County", title: "Criminal Defense & DUI Attorney Harford County", courthouse: "Harford County Courthouse (Bel Air, MD)" },
   { slug: "cecil-county", name: "Cecil County", title: "Criminal Defense & DUI Attorney Cecil County", courthouse: "Cecil County District & Circuit Courthouses (Elkton, MD)" },
-  { slug: "baltimore-county", name: "Baltimore County", title: "Criminal Defense & DUI Attorney Baltimore County", courthouse: "Baltimore County District & Circuit Courthouses (Towson, MD)" },
+  { slug: "anne-arundel-county", name: "Anne Arundel County", title: "Criminal Defense & DUI Attorney Anne Arundel County", courthouse: "Anne Arundel County District & Circuit Courthouses (Annapolis, MD)", office: "towson" },
+  { slug: "prince-georges-county", name: "Prince George's County", title: "Criminal Defense & DUI Attorney Prince George's County", courthouse: "Prince George's County District & Circuit Courthouses (Upper Marlboro, MD)", office: "towson" },
+  { slug: "howard-county", name: "Howard County", title: "Criminal Defense & DUI Attorney Howard County", courthouse: "Howard County District & Circuit Courthouses (Ellicott City, MD)", office: "towson" },
   { slug: "washington-dc", name: "Washington DC", title: "Criminal Defense & DUI Attorney Washington DC", courthouse: "Superior Court of the District of Columbia (Washington, DC)" }
 ];
 

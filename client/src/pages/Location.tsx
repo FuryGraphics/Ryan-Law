@@ -5,7 +5,7 @@ import FloatingCallButton from "@/components/FloatingCallButton";
 import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { LOCATION_PAGES, CLIENT_INFO, CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES } from "@/lib/routes";
+import { LOCATION_PAGES, LOCATION_CONFIGS, CLIENT_INFO, CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES } from "@/lib/routes";
 import { MapPin, Phone, Clock, Scale, Shield, Gavel, CheckCircle, ChevronRight } from "lucide-react";
 import { MapView } from "@/components/Map";
 
@@ -15,6 +15,14 @@ interface LocationProps {
 
 export default function Location({ slug }: LocationProps) {
   const currentLocation = LOCATION_PAGES.find((l) => l.slug === slug) || LOCATION_PAGES[0];
+
+  // If this location is served from a specific office, use that office's contact details.
+  const officeKey = (currentLocation as any).office as keyof typeof LOCATION_CONFIGS | undefined;
+  const office = officeKey ? LOCATION_CONFIGS[officeKey] : null;
+  const officeName = office ? `${office.name} Office` : "Primary Office Location";
+  const officeAddress = office ? office.address : CLIENT_INFO.address;
+  const officePhone = office ? office.phone : CLIENT_INFO.phone;
+  const officePhoneRaw = office ? office.phoneRaw : CLIENT_INFO.phoneRaw;
 
   const h1 = `Criminal Defense & DUI Attorney in ${currentLocation.name}`;
   const seoTitle = `${currentLocation.title} | Ryan Law LLC`;
@@ -77,8 +85,8 @@ export default function Location({ slug }: LocationProps) {
               <div className="flex items-start gap-3 bg-card p-5 border border-white/5 rounded-sm">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-serif text-base font-semibold text-foreground mb-1">Primary Office Location</p>
-                  <p className="text-xs leading-relaxed">{CLIENT_INFO.address}</p>
+                  <p className="font-serif text-base font-semibold text-foreground mb-1">{officeName}</p>
+                  <p className="text-xs leading-relaxed">{officeAddress}</p>
                 </div>
               </div>
 
@@ -86,8 +94,8 @@ export default function Location({ slug }: LocationProps) {
                 <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <div>
                   <p className="font-serif text-base font-semibold text-foreground mb-1">Direct Helpline</p>
-                  <a href={CLIENT_INFO.phoneRaw} className="text-xs hover:text-primary transition-colors">
-                    {CLIENT_INFO.phone}
+                  <a href={officePhoneRaw} className="text-xs hover:text-primary transition-colors">
+                    {officePhone}
                   </a>
                 </div>
               </div>
@@ -107,7 +115,7 @@ export default function Location({ slug }: LocationProps) {
             <MapView
               onMapReady={(map: any) => {
                 const geocoder = new google.maps.Geocoder();
-                geocoder.geocode({ address: CLIENT_INFO.address }, (results, status) => {
+                geocoder.geocode({ address: officeAddress }, (results, status) => {
                   if (status === "OK" && results && results[0]) {
                     const location = results[0].geometry.location;
                     map.setCenter(location);
