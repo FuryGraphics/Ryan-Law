@@ -18,7 +18,7 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
-import { Disclaimer, PrivacyPolicy, SitemapPage } from "./pages/Utilities";
+import { Disclaimer, PrivacyPolicy, TermsOfService, SitemapPage } from "./pages/Utilities";
 import FileManager from "./pages/FileManager";
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -42,6 +42,7 @@ function Router() {
       {/* Utility Pages */}
       <Route path="/disclaimer" component={Disclaimer} />
       <Route path="/privacy-policy" component={PrivacyPolicy} />
+      <Route path="/terms-of-service" component={TermsOfService} />
       <Route path="/sitemap" component={SitemapPage} />
 
       {/* Practice Area Parents */}

@@ -511,11 +511,15 @@ export default function Home() {
               <Phone className="w-5 h-5 fill-current text-primary" />
               <span>Call James Ryan: {currentLocation.phone}</span>
             </a>
-            <Link href="/contact">
-              <span className="border border-primary-foreground/30 hover:border-primary-foreground hover:bg-white/5 text-primary-foreground font-sans font-medium text-base py-4 px-8 rounded-sm transition-all text-center cursor-pointer block">
-                Schedule Free Consultation
-              </span>
-            </Link>
+            <a
+              href={CLIENT_INFO.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-primary-foreground/30 hover:border-primary-foreground hover:bg-white/5 text-primary-foreground font-sans font-medium text-base py-4 px-8 rounded-sm transition-all text-center cursor-pointer flex items-center justify-center gap-2"
+            >
+              <Calendar className="w-5 h-5" />
+              <span>Book a Free Consultation</span>
+            </a>
           </div>
         </div>
       </section>

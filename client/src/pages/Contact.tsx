@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { CLIENT_INFO, CORE_PAGES } from "@/lib/routes";
-import { MapPin, Phone, Mail, Clock, ShieldCheck } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ShieldCheck, Calendar } from "lucide-react";
 import { MapView } from "@/components/Map";
 
 export default function Contact() {
@@ -73,6 +73,23 @@ export default function Contact() {
               </p>
               <div className="w-12 h-1 bg-primary" />
             </div>
+
+            {/* Online Booking CTA */}
+            <a
+              href={CLIENT_INFO.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center justify-between gap-4 bg-primary hover:bg-primary/90 text-primary-foreground p-6 rounded-sm transition-all shadow-lg active:scale-[0.99]"
+            >
+              <div className="flex items-center gap-3">
+                <Calendar className="w-6 h-6 shrink-0" />
+                <div>
+                  <p className="font-serif text-base font-bold">Book an Appointment Online</p>
+                  <p className="text-xs opacity-90 font-sans font-light">Pick a time that works for you — instant confirmation.</p>
+                </div>
+              </div>
+              <span className="font-sans text-xs font-bold tracking-wider uppercase whitespace-nowrap group-hover:translate-x-0.5 transition-transform">Schedule →</span>
+            </a>
 
             <div className="flex flex-col gap-4 font-sans text-sm text-muted-foreground">
               {offices.map((office) => (

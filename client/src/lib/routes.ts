@@ -12,6 +12,7 @@ export const CLIENT_INFO = {
   phone: "(443) 348-0434",
   phoneRaw: "tel:+14433480434",
   email: "james@ryanlaw.us",
+  bookingUrl: "https://ryanlawllc.cliogrow.com/book/dac9cd8d2900d1d3dbd9085400c82da0",
   address: "16a Bel Air South Pkwy, Bel Air, MD 21015",
   domain: "www.ryanlaw.us",
   primaryCity: "Bel Air, MD",
@@ -106,6 +107,13 @@ export const CORE_PAGES: Record<string, RouteInfo> = {
     path: "/privacy-policy",
     seoTitle: "Privacy Policy | Ryan Law LLC",
     metaDescription: "Privacy policy for Ryan Law LLC. Learn how we collect, use, and protect your personal information on our website.",
+    schemaType: "WebPage"
+  },
+  terms: {
+    title: "Terms of Service",
+    path: "/terms-of-service",
+    seoTitle: "Terms of Service | Ryan Law LLC",
+    metaDescription: "Terms of Service for Ryan Law LLC, including website use, SMS/text messaging terms, and legal disclaimers for our Bel Air, MD law firm.",
     schemaType: "WebPage"
   },
   sitemap: {

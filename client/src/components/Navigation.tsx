@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { CLIENT_INFO, CRIMINAL_DEFENSE_SUBPAGES, DUI_DEFENSE_SUBPAGES } from "@/lib/routes";
-import { Menu, X, ChevronDown, Phone } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Calendar } from "lucide-react";
 import { useLocationSettings } from "@/contexts/LocationContext";
 
 export default function Navigation() {
@@ -145,6 +145,16 @@ export default function Navigation() {
         {/* Call CTA Button & Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-4 shrink-0">
           <a
+            href={CLIENT_INFO.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:flex items-center gap-2 border border-primary/40 hover:border-primary hover:bg-primary/10 text-foreground font-sans font-semibold text-xs sm:text-sm py-2 px-3 sm:px-4 rounded-sm transition-all active:scale-[0.97] whitespace-nowrap"
+          >
+            <Calendar className="w-3.5 h-3.5 text-primary" />
+            <span>Book Online</span>
+          </a>
+
+          <a
             href={currentLocation.phoneRaw}
             className="hidden xs:flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-semibold text-xs sm:text-sm py-2 px-3 sm:px-5 rounded-sm transition-all shadow-md active:scale-[0.97] whitespace-nowrap"
           >
@@ -209,8 +219,19 @@ export default function Navigation() {
             ))}
 
             <a
+              href={CLIENT_INFO.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsOpen(false)}
+              className="flex items-center justify-center gap-2 border border-primary/40 hover:bg-primary/10 text-foreground font-sans font-bold text-base py-4 rounded-sm transition-all mt-4"
+            >
+              <Calendar className="w-5 h-5 text-primary" />
+              <span>Book an Appointment Online</span>
+            </a>
+
+            <a
               href={currentLocation.phoneRaw}
-              className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-bold text-base py-4 rounded-sm transition-all mt-4"
+              className="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-bold text-base py-4 rounded-sm transition-all"
             >
               <Phone className="w-5 h-5" />
               <span>Call James Ryan Directly</span>

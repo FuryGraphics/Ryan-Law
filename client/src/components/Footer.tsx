@@ -113,6 +113,9 @@ export default function Footer() {
             <Link href="/privacy-policy">
               <span className="hover:text-primary transition-colors cursor-pointer">Privacy Policy</span>
             </Link>
+            <Link href="/terms-of-service">
+              <span className="hover:text-primary transition-colors cursor-pointer">Terms of Service</span>
+            </Link>
             <Link href="/sitemap">
               <span className="hover:text-primary transition-colors cursor-pointer">Sitemap</span>
             </Link>
