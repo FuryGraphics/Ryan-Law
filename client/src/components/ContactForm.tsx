@@ -1,10 +1,21 @@
-import { Button } from "@/components/ui/button";
-import { Mail, Phone, ShieldCheck, Clock } from "lucide-react";
-import { CLIENT_INFO } from "@/lib/routes";
+import { useEffect } from "react";
+import { Phone, ShieldCheck, Clock } from "lucide-react";
 import { useLocationSettings } from "@/contexts/LocationContext";
+
+const FORM_ID = "vTiqIYJBiCGmWYcENUrI";
+const FORM_EMBED_SCRIPT = "https://services.caseclimb.com/js/form_embed.js";
 
 export default function ContactForm() {
   const { currentLocation } = useLocationSettings();
+
+  // Load the CaseClimb embed script once; it handles iframe auto-resizing.
+  useEffect(() => {
+    if (document.querySelector(`script[src="${FORM_EMBED_SCRIPT}"]`)) return;
+    const script = document.createElement("script");
+    script.src = FORM_EMBED_SCRIPT;
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <div className="bg-card border border-white/5 rounded-sm p-8 md:p-12 shadow-2xl relative overflow-hidden text-center flex flex-col items-center max-w-3xl mx-auto">
@@ -24,23 +35,33 @@ export default function ContactForm() {
         </p>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md justify-center mb-8">
-        <a
-          href={`mailto:${CLIENT_INFO.email}?subject=Case Evaluation Request - Ryan Law LLC`}
-          className="flex-1 inline-flex items-center justify-center gap-2.5 bg-primary hover:bg-primary/90 text-primary-foreground font-sans font-bold text-sm py-4 px-8 rounded-sm transition-all active:scale-[0.98] shadow-lg shadow-primary/10"
-        >
-          <Mail className="w-4 h-4 fill-current" />
-          <span>Email James Ryan</span>
-        </a>
-
-        <a
-          href={currentLocation.phoneRaw}
-          className="flex-1 inline-flex items-center justify-center gap-2.5 bg-transparent hover:bg-white/5 text-foreground border border-white/10 font-sans font-bold text-sm py-4 px-8 rounded-sm transition-all active:scale-[0.98]"
-        >
-          <Phone className="w-4 h-4" />
-          <span>Call: {currentLocation.phone}</span>
-        </a>
+      <div className="w-full relative mb-8">
+        <iframe
+          src={`https://services.caseclimb.com/widget/form/${FORM_ID}`}
+          style={{ width: "100%", height: "560px", border: "none", borderRadius: "10px" }}
+          id={`inline-${FORM_ID}`}
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Website Form Ryan Law LLC "
+          data-height="560"
+          data-layout-iframe-id={`inline-${FORM_ID}`}
+          data-form-id={FORM_ID}
+          title="Website Form Ryan Law LLC "
+        />
       </div>
+
+      <a
+        href={currentLocation.phoneRaw}
+        className="w-full max-w-md inline-flex items-center justify-center gap-2.5 bg-transparent hover:bg-white/5 text-foreground border border-white/10 font-sans font-bold text-sm py-4 px-8 rounded-sm transition-all active:scale-[0.98] mb-8"
+      >
+        <Phone className="w-4 h-4" />
+        <span>Call: {currentLocation.phone}</span>
+      </a>
 
       {/* Meta Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full border-t border-white/5 pt-8 text-left max-w-xl font-sans text-xs text-muted-foreground">
