@@ -175,7 +175,20 @@ export default function Portal() {
               <span>Attorney-Direct Advocacy</span>
             </div>
           </div>
-          <p>© {new Date().getFullYear()} Ryan Law LLC. All rights reserved.</p>
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex gap-6">
+              <Link href="/disclaimer">
+                <span className="hover:text-primary transition-colors cursor-pointer">Disclaimer</span>
+              </Link>
+              <Link href="/privacy-policy">
+                <span className="hover:text-primary transition-colors cursor-pointer">Privacy Policy</span>
+              </Link>
+              <Link href="/terms-of-service">
+                <span className="hover:text-primary transition-colors cursor-pointer">Terms of Service</span>
+              </Link>
+            </div>
+            <p>© {new Date().getFullYear()} Ryan Law LLC. All rights reserved.</p>
+          </div>
         </div>
       </footer>
     </div>
