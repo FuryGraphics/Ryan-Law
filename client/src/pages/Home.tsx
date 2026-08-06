@@ -78,24 +78,25 @@ export default function Home() {
     { name: "Washington DC", slug: "washington-dc" }
   ];
 
+  // Verbatim reviews from the Ryan Law LLC Google Business Profile (Bel Air).
   const reviews = [
     {
       stars: 5,
-      quote: `James Ryan completely saved my future. I was facing a serious DUI charge in ${currentLocation.name}, but he identified an issue with the evidence and got the case dismissed.`,
-      author: "Robert",
-      location: currentLocation.name
+      quote: `James Ryan is the best criminal defense Counselor I could have hired for my DUI/DWI case. James was always responsive to my questions and concerns. In the end, James managed to negotiate dismissal all of my many traffic violations relevant to my DUI charges.`,
+      author: "Jose Jaquez",
+      date: "a year ago"
     },
     {
       stars: 5,
-      quote: `I can't recommend Ryan Law LLC enough. He was extremely responsive, answered my late-night calls, and walked me through every step of my criminal defense. Professionalism at its finest.`,
-      author: "Sarah",
-      location: currentLocation.name
+      quote: `James Ryan could not have represented me better. I felt bad at times texting or calling him on weekends but that was never an issue for him. I was going through a really tough experience but he made it as seamless and smooth as possible and results were outstanding.`,
+      author: "Robert Blevins",
+      date: "2 years ago"
     },
     {
       stars: 5,
-      quote: `Aggressive, professional, and compassionate. James Ryan fought my drug possession charges in ${currentLocation.name} and secured a favorable outcome that allowed me to keep my job.`,
-      author: "Marcus",
-      location: currentLocation.name
+      quote: `I gave 5 stars because James was thorough with ensuring every angle of my case could be dealt with if that angle was to be met in court. He informed me of everything I could prepare to make my case stronger and was able to get my case dismissed entirely during negotiations.`,
+      author: "Avery Alexander",
+      date: "3 years ago"
     }
   ];
 
@@ -473,7 +474,7 @@ export default function Home() {
                 <div className="pt-4 border-t border-white/5 mt-6 flex flex-col items-start text-left">
                   <span className="font-serif text-sm font-bold text-foreground text-left">{rev.author}</span>
                   <span className="text-[10px] text-muted-foreground font-sans uppercase tracking-wider mt-0.5 text-left">
-                    {rev.location} Client
+                    Google Review &middot; {rev.date}
                   </span>
                 </div>
               </motion.div>

@@ -11,6 +11,9 @@ export const CLIENT_INFO = {
   attorney: "James Ryan",
   phone: "(443) 348-0434",
   phoneRaw: "tel:+14433480434",
+  // Number listed on the Google Business Profile — used for structured data so
+  // the site's NAP matches the GBP exactly.
+  phoneGbp: "+1 443-640-9917",
   email: "james@ryanlaw.us",
   bookingUrl: "https://ryanlawllc.cliogrow.com/book/dac9cd8d2900d1d3dbd9085400c82da0",
   address: "16a Bel Air South Pkwy, Bel Air, MD 21015",

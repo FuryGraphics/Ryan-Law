@@ -76,15 +76,15 @@ export default function SEO({
       schemas.push({
         "@context": "https://schema.org",
         "@type": "LegalService",
-        "@id": siteUrl,
+        "@id": `${siteUrl}/#organization`,
         "name": CLIENT_INFO.name,
         "image": CLIENT_INFO.images.heroBg,
         "url": siteUrl,
-        "telephone": CLIENT_INFO.phone,
+        "telephone": CLIENT_INFO.phoneGbp,
         "email": CLIENT_INFO.email,
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "16a Bel Air South Pkwy",
+          "streetAddress": "16a Bel Air S Pkwy Suite 202",
           "addressLocality": "Bel Air",
           "addressRegion": "MD",
           "postalCode": "21015",
@@ -92,9 +92,10 @@ export default function SEO({
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": "39.5165",
-          "longitude": "-76.3614"
+          "latitude": "39.5006323",
+          "longitude": "-76.3533814"
         },
+        // Google Business Profile lists the firm as open 24 hours, 7 days.
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
           "dayOfWeek": [
@@ -102,10 +103,12 @@ export default function SEO({
             "Tuesday",
             "Wednesday",
             "Thursday",
-            "Friday"
+            "Friday",
+            "Saturday",
+            "Sunday"
           ],
-          "opens": "09:00",
-          "closes": "18:00"
+          "opens": "00:00",
+          "closes": "24:00"
         },
         "priceRange": "$$",
         "areaServed": CLIENT_INFO.serviceAreas.map(area => ({
@@ -120,11 +123,11 @@ export default function SEO({
         "@id": `${siteUrl}/attorney`,
         "name": CLIENT_INFO.attorney,
         "image": CLIENT_INFO.images.portrait,
-        "telephone": CLIENT_INFO.phone,
+        "telephone": CLIENT_INFO.phoneGbp,
         "email": CLIENT_INFO.email,
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "16a Bel Air South Pkwy",
+          "streetAddress": "16a Bel Air S Pkwy Suite 202",
           "addressLocality": "Bel Air",
           "addressRegion": "MD",
           "postalCode": "21015",
@@ -141,7 +144,7 @@ export default function SEO({
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
         "name": `${CLIENT_INFO.name} - ${schemaData.locationName}`,
-        "telephone": CLIENT_INFO.phone,
+        "telephone": CLIENT_INFO.phoneGbp,
         "address": {
           "@type": "PostalAddress",
           "addressLocality": schemaData.locality || "Bel Air",
