@@ -5,6 +5,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { defineConfig, type Plugin, type ViteDevServer } from "vite";
 import { vitePluginManusRuntime } from "vite-plugin-manus-runtime";
+import {
+  LOCATION_ROUTES,
+  LOCATION_SCHEMAS,
+  LOCATION_SCHEMA_ELEMENT_ID,
+  type LocationKey,
+} from "./client/src/lib/locationSchemas";
 
 // =============================================================================
 // Manus Debug Collector - Vite Plugin
@@ -150,7 +156,38 @@ function vitePluginManusDebugCollector(): Plugin {
   };
 }
 
-const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector()];
+/**
+ * The site is a single-page app, so every route is served the same index.html
+ * and would carry the same structured data. Each office has its own Google
+ * Business Profile, so emit a dedicated HTML file per location route with that
+ * office's JSON-LD in the head. Vercel checks the filesystem before applying
+ * the SPA rewrite, so /towson serves towson/index.html rather than the root.
+ */
+function emitLocationPages(): Plugin {
+  return {
+    name: "emit-location-pages",
+    apply: "build",
+    async closeBundle() {
+      const outDir = path.resolve(import.meta.dirname, "dist/public");
+      const indexPath = path.join(outDir, "index.html");
+      const template = await fs.promises.readFile(indexPath, "utf-8");
+
+      for (const [key, route] of Object.entries(LOCATION_ROUTES)) {
+        const schema = LOCATION_SCHEMAS[key as LocationKey];
+        const tag = schema
+          ? `<script type="application/ld+json" id="${LOCATION_SCHEMA_ELEMENT_ID}">\n${JSON.stringify(schema, null, 2)}\n</script>`
+          : "";
+        const html = template.replace("<!-- LOCATION_SCHEMA -->", tag);
+
+        await fs.promises.mkdir(path.join(outDir, route), { recursive: true });
+        await fs.promises.writeFile(path.join(outDir, route, "index.html"), html);
+        console.log(`[location-pages] ${route}/index.html${schema ? "" : " (no schema yet)"}`);
+      }
+    },
+  };
+}
+
+const plugins = [react(), tailwindcss(), jsxLocPlugin(), vitePluginManusRuntime(), vitePluginManusDebugCollector(), emitLocationPages()];
 
 export default defineConfig({
   plugins,

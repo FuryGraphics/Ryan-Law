@@ -5,7 +5,9 @@ import Footer from "@/components/Footer";
 import FloatingCallButton from "@/components/FloatingCallButton";
 import ContactForm from "@/components/ContactForm";
 import SEO from "@/components/SEO";
+import ReviewsWidget from "@/components/ReviewsWidget";
 import { CLIENT_INFO, CORE_PAGES } from "@/lib/routes";
+import { LOCATION_REVIEW_WIDGETS } from "@/lib/locationSchemas";
 import { useLocationSettings } from "@/contexts/LocationContext";
 import {
   Phone,
@@ -77,6 +79,10 @@ export default function Home() {
     { name: "Cecil County", slug: "cecil-county" },
     { name: "Washington DC", slug: "washington-dc" }
   ];
+
+  // Offices with a live review widget show that instead of the curated cards,
+  // which quote the Bel Air profile and would be wrong on another office's page.
+  const reviewWidgetSlug = LOCATION_REVIEW_WIDGETS[locationKey];
 
   // Verbatim reviews from the Ryan Law LLC Google Business Profile (Bel Air).
   const reviews = [
@@ -447,6 +453,9 @@ export default function Home() {
             <div className="w-16 h-1 bg-primary" />
           </div>
 
+          {reviewWidgetSlug ? (
+            <ReviewsWidget slug={reviewWidgetSlug} title={`${currentLocation.name} client reviews`} />
+          ) : (
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -480,6 +489,7 @@ export default function Home() {
               </motion.div>
             ))}
           </motion.div>
+          )}
 
           <div className="text-center">
             <Link href="/testimonials">

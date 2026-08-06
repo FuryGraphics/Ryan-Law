@@ -1,5 +1,12 @@
 import { useEffect } from "react";
 import { CLIENT_INFO } from "@/lib/routes";
+import { useLocation } from "wouter";
+import {
+  LOCATION_ROUTES,
+  LOCATION_SCHEMAS,
+  LOCATION_SCHEMA_ELEMENT_ID,
+  type LocationKey,
+} from "@/lib/locationSchemas";
 
 interface SEOProps {
   title: string;
@@ -20,6 +27,31 @@ export default function SEO({
 }: SEOProps) {
   const siteUrl = `https://${CLIENT_INFO.domain}`;
   const fullCanonical = canonicalUrl ? `${siteUrl}${canonicalUrl}` : `${siteUrl}`;
+  const [pathname] = useLocation();
+
+  // Keep the per-office block in sync during client-side navigation. The build
+  // bakes the correct one into each location page's HTML, but wouter never
+  // reloads the document, so the block has to be swapped as the visitor moves
+  // between offices — and removed on pages that belong to no single office.
+  //
+  // Keyed off the path rather than the LocationContext, which remembers a
+  // preferred office in sessionStorage and would otherwise attach an office to
+  // pages like /blog that belong to none.
+  useEffect(() => {
+    document.getElementById(LOCATION_SCHEMA_ELEMENT_ID)?.remove();
+
+    const key = (Object.keys(LOCATION_ROUTES) as LocationKey[]).find(
+      k => pathname === `/${LOCATION_ROUTES[k]}`
+    );
+    const schema = key ? LOCATION_SCHEMAS[key] : null;
+    if (!schema) return;
+
+    const script = document.createElement("script");
+    script.id = LOCATION_SCHEMA_ELEMENT_ID;
+    script.type = "application/ld+json";
+    script.text = JSON.stringify(schema);
+    document.head.appendChild(script);
+  }, [pathname]);
 
   useEffect(() => {
     // Update Title
@@ -71,8 +103,15 @@ export default function SEO({
 
     const schemas: any[] = [];
 
+    // On a location page the office's own block is already in the head, so
+    // skip the firm-wide business schema — otherwise Google sees the Bel Air
+    // HQ and, say, the Towson office described as two businesses on one page.
+    const onLocationPage = (Object.keys(LOCATION_ROUTES) as LocationKey[]).some(
+      k => pathname === `/${LOCATION_ROUTES[k]}`
+    );
+
     // 1. Core Schema
-    if (schemaType === "LegalService") {
+    if (schemaType === "LegalService" && !onLocationPage) {
       schemas.push({
         "@context": "https://schema.org",
         "@type": "LegalService",
@@ -192,7 +231,7 @@ export default function SEO({
       script.text = JSON.stringify(schemas.length === 1 ? schemas[0] : schemas);
       document.head.appendChild(script);
     }
-  }, [title, description, fullCanonical, schemaType, schemaData, breadcrumbs]);
+  }, [title, description, fullCanonical, schemaType, schemaData, breadcrumbs, pathname]);
 
   return null;
 }
