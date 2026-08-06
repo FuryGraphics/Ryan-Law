@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import ChatWidget from "./components/ChatWidget";
+import ScrollToTop from "./components/ScrollToTop";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { LocationProvider } from "./contexts/LocationContext";
 
@@ -106,6 +107,7 @@ function App() {
         <LocationProvider>
           <TooltipProvider>
             <Toaster />
+            <ScrollToTop />
             <Router />
             <ChatWidget />
           </TooltipProvider>
